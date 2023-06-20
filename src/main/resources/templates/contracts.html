@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contracts</title>
+</head>
+<body>
+<div class="container">
+
+    <h3>List Contracts</h3>
+
+    <hr/>
+<!--    <a th:href="@{/addEmployeeForm}" class="btn btn-primary">Add Employee</a>-->
+    <br/><br/>
+    <table class="table table-bordered table-striped" id="employeeTable">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contract: ${contracts}">
+            <td th:text="${contract.getIdContract()()}"></td>
+            <td th:text="${contract.getIdTenant()}"></td>
+            <td th:text="${contract.getIdStore()}"></td>
+<!--            <td>-->
+<!--                <a th:href="@{/showUpdateForm(employeeId=${employee.id})}" class="btn btn-info">Update</a>-->
+
+<!--                <a th:href="@{/deleteEmployee(employeeId=${employee.id})}" class="btn btn-danger ml-2">Delete</a>-->
+<!--            </td>-->
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>
