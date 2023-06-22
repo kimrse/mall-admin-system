@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Новый сотрудник</title>
+</head>
+<body>
+<div class="container">
+
+  <h3>Добавить нового сотрудника</h3>
+  <hr/>
+  <form th:action="@{/employees}" th:object="${employee}" method="POST">
+
+    <input type="text" th:field="*{details}" class="form-control col-4 mb-4" placeholder="Введите описание договора" />
+    <input type="date" th:field="*{endDate}" class="form-control col-4 mb-4" placeholder="Выберите дату оканчания договора" />
+    <button type="submit" class="btn">Добавить</button>
+  </form>
+  <hr/>
+  <a th:href="@{/list}">Back to list</a>
+</div>
+</body>
+</html>

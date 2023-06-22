@@ -18,4 +18,13 @@ public class StoreService {
         return emptyStores;
     }
 
+    public List<Store> getAllStores() {
+        var stores = storeRepository.findAll();
+        return stores;
+    }
+
+    public Store getStoreById(long id) {
+        var store = storeRepository.findById(id);
+        return store;
+    }
 }

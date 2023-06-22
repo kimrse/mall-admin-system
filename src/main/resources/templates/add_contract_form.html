@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>Добавление договора аренды</title>
-</head>
-<body>
-<div class="container">
+  </head>
+  <body>
+    <div class="container">
 
-    <h3>Добавить новый договор аренды</h3>
-    <hr/>
-    <form th:action="@{/contracts}" th:object="${contract}" method="POST">
+      <h3>Добавить новый договор аренды</h3>
+      <hr/>
+      <form th:action="@{/contracts}" th:object="${contract}" method="POST">
 
         <select th:field="*{tenant}">
-            <option value="0">Выберите арендатора</option>
-            <option th:each="tenant : ${tenants}" th:value="${tenant.idTenant}"
-                    th:text="${'Номер:'+tenant.idTenant+', ФИО: '+tenant.firstName+' '+tenant.lastName+' '+tenant.middleName}">
-            </option>
+          <option value="0">Выберите арендатора</option>
+          <option th:each="tenant : ${tenants}" th:value="${tenant.idTenant}"
+                  th:text="${'Номер:'+tenant.idTenant+', ФИО: '+tenant.firstName+' '+tenant.lastName+' '+tenant.middleName}">
+          </option>
         </select>
         <select th:field="*{store}">
-            <option value="0">Выберите магазин</option>
-            <option th:each="store : ${emptyStores}" th:value="${store.idStore}"
-                    th:text="${'Магазин: '+store.idStore+', Этаж: '+store.floor+', Площадь: '+store.squareArea+', Цена: '+store.monthlyCost}">
-            </option>
-        </select>
+          <option value="0">Выберите магазин</option>
+          <option th:each="store : ${emptyStores}" th:value="${store.idStore}"
+                  th:text="${'Магазин: '+store.idStore+', Этаж: '+store.floor+', Площадь: '+store.squareArea+', Цена: '+store.monthlyCost}">
+          </option>
+      </select>
         <input type="text" th:field="*{details}" class="form-control col-4 mb-4" placeholder="Введите описание договора" />
         <input type="date" th:field="*{endDate}" class="form-control col-4 mb-4" placeholder="Выберите дату оканчания договора" />
         <button type="submit" class="btn">Добавить</button>
-
-    </form>
-    <hr/>
-    <a th:href="@{/list}">Back to list</a>
-</div>
-</body>
+      </form>
+      <hr/>
+      <a th:href="@{/list}">Back to list</a>
+    </div>
+  </body>
 </html>

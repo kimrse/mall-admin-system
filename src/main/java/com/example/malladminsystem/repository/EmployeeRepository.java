@@ -7,11 +7,9 @@ import org.springframework.data.repository.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InvoiceRepository extends CrudRepository<Invoice, Long> {
+public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
-    Invoice findByIdInvoice(long id);
+    Employee findById(long id);
 
-    List<Invoice> findAll();
-
-    List<Invoice> findAllByIsPaidIsFalse();
+    List<Employee> findAll();
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Павильон</title>
+</head>
+<body>
+<div class="movie">
+  <div th:object="${store}" class="movie-info-box">
+    <div class="movie-info">
+      <h4>Информация о павильоне:</h4>
+      <h5>Номер павильона: </h5><span th:text="*{idStore}"></span>
+      <h5>Размер кв.м: </h5><span th:text="*{squareArea}"></span>
+      <h5>Этаж: </h5><span th:text="*{floor}"></span>
+      <h5>Стоимость аренды: </h5><span th:text="*{monthlyCost}"></span>
+      <h5>Статус павильона: </h5><span th:text="*{isOccupied()}"></span>
+<!--      <h5>Арендатор: </h5><span th:href="*{}" th:text="*{idStore}"></span>-->
+      <h5>Название магазина: </h5><span th:text="*{storeTitle}"></span>
+      <h5>Тип магазина: </h5><span th:text="*{storeType}"></span>
+      <h5>Подробное описание: </h5><span th:text="*{storeDescription}"></span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

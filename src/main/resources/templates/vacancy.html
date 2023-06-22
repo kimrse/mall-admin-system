@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Вакансии</title>
+</head>
+<body>
+<div class="movie">
+  <div th:object="${vacancy}" class="movie-info-box">
+    <div class="movie-info">
+      <h4>Информация о вакансии:</h4>
+      <h5>Наименование: </h5><span th:text="*{vacancyTitle}"></span>
+      <h5>Магазин: </h5>
+        <a th:href="@{/stores/(id=${vacancy.store.idStore})}">
+        <span th:text="*{store.storeTitle}"></span>
+        </a>
+      <h5>Зарплата: </h5><span th:text="*{salary}"></span>
+      <h5>Статус вакансии: </h5><span th:text="*{isActive()}"></span>
+      <h5>Описание вакансии: </h5><span th:text="*{vacancyDescription}"></span>
+    </div>
+    <a th:href="@{/vacancies/edit(id=${vacancy.idVacancy})}" class="btn btn-info">Редактировать вакансию</a>
+  </div>
+  <div class="movie-desc">
+  </div>
+</div>
+</body>
+</html>
