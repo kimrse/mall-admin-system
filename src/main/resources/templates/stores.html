@@ -4,32 +4,35 @@
   <meta charset="UTF-8">
   <title>Магазины</title>
   <link rel="stylesheet" th:href="@{../css/style.css}"/>
-  <link rel="stylesheet" type="text/css"
+  <link rel="stylesheet"
+        type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
         crossorigin="anonymous" />
 </head>
-<header>
-  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
-  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
-  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
-  <a class="head btn-hd btn-selected" th:href="@{/stores}">Магазины</a>
-  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
-  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
-  <a class="head btn-hd" th:href="@{/storage}">Поставки</a>
-  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
-</header>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/stores}">Магазины</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+</nav>
 <body>
-<div class="movie">
-  <a th:href="@{/stores/new}">Добавить магазин</a>
-  <h3>Перечень магазинов</h3>
+<div class="container pt-3 my-5">
+  <h3 class="text-center p-3">Перечень павильонов</h3>
+  <span class="container p-2">
+    <a class="btn btn-success w-auto .hover-shadow" th:href="@{/stores/new}">Добавить магазин</a>
+  </span>
   <hr/>
-  <br/><br/>
-  <table class="table" id="storeTable">
+  <table class="table table-bordered" id="storeTable">
     <thead>
     <tr>
+      <th>Павильон</th>
       <th>Название</th>
       <th>Размер магазина кв.м</th>
       <th>Этаж</th>
@@ -40,13 +43,14 @@
     </thead>
     <tbody>
     <tr th:each="store: ${stores}">
+      <td th:text="${store.idStore}"></td>
       <td th:text="${store.storeTitle}"></td>
       <td th:text="${store.squareArea}"></td>
       <td th:text="${store.floor}"></td>
       <td th:text="${store.monthlyCost}"></td>
       <td th:text="${store.occupied}"></td>
       <td>
-        <a class="btn" th:href="@{/stores/(id=${store.idStore})}">Подробнее</a>
+        <a class="btn btn-info w-auto" th:href="@{/stores/(id=${store.idStore})}">Подробнее</a>
       </td>
     </tr>
     </tbody>
@@ -64,6 +68,7 @@
             "oLanguage": {
                 "sLengthMenu": "Показать _MENU_ записей",
                 "sInfo": "Показано _END_ из _TOTAL_ записей",
+                "sSearch": "Поиск:",
                 "oPaginate": {
                     "sNext": "Далее",
                     "sPrevious": "Назад"

@@ -23,13 +23,13 @@
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
 </nav>
   <body>
-    <div class="container pt-4 my-5">
+    <div class="container pt-3 my-5">
       <h3 class="text-center p-3">Перечень арендаторов</h3>
       <span class="container p-2">
-        <a class="btn btn-success .hover-shadow" th:href="@{/tenants/new}">Добавить арендатора</a>
+        <a class="btn btn-success w-auto .hover-shadow" th:href="@{/tenants/new}">Добавить арендатора</a>
       </span>
       <hr/>
-      <table class="table" id="tenantTable">
+      <table class="table table-bordered" id="tenantTable">
         <thead>
           <tr>
             <th>Имя</th>
@@ -52,7 +52,7 @@
           <td th:text="${tenant.address}"></td>
           <td th:text="${tenant.isDebtor()}"></td>
           <td>
-            <a class="btn btn-info" th:href="@{/tenants/(id=${tenant.idTenant})}">Подробнее</a>
+            <a class="btn btn-info w-auto" th:href="@{/tenants/(id=${tenant.idTenant})}">Подробнее</a>
           </td>
         </tr>
         </tbody>
@@ -71,6 +71,7 @@
                 "oLanguage": {
                     "sLengthMenu": "Показать _MENU_ записей",
                     "sInfo": "Показано _END_ из _TOTAL_ записей",
+                    "sSearch": "Поиск:",
                     "oPaginate": {
                         "sNext": "Далее",
                         "sPrevious": "Назад"

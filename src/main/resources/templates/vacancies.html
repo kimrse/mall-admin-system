@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Вакансии</title>
-  <link rel="stylesheet" th:href="@{../css/style.css}"/>
   <link rel="stylesheet"
         type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
@@ -12,23 +11,24 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
         crossorigin="anonymous" />
 </head>
-<header>
-  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
-  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
-  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
-  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
-  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
-  <a class="head btn-hd btn-selected" th:href="@{/vacancies}">Вакансии</a>
-  <a class="head btn-hd" th:href="@{/storage}">Поставки</a>
-  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
-</header>
-  <body>
-    <div class="movie">
-      <a th:href="@{/vacancies/new}">Добавить вакансию</a>
-      <h3>Перечень вакансий</h3>
-      <hr/>
-      <br/><br/>
-      <table class="table table-bordered table-striped" id="vacanciesTable">
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Магазины</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+</nav>
+<body>
+<div class="container pt-3 my-5">
+  <h3 class="text-center p-3">Перечень вакансий</h3>
+  <span class="container p-2">
+    <a class="btn btn-success w-auto .hover-shadow" th:href="@{/vacancies/new}">Добавить вакансию</a>
+  </span>
+    <hr/>
+      <table class="table table-bordered" id="vacanciesTable">
         <thead>
           <tr>
             <th>Вакансия</th>
@@ -49,7 +49,7 @@
             <td th:text="${vacancy.salary}"></td>
             <td th:text="${vacancy.isActive()}"></td>
             <td>
-              <a th:href="@{/vacancies/(id=${vacancy.idVacancy})}">Подробнее</a>
+              <a class="btn btn-info w-auto" th:href="@{/vacancies/(id=${vacancy.idVacancy})}">Подробнее</a>
             </td>
           </tr>
         </tbody>
@@ -67,6 +67,7 @@
                 "oLanguage": {
                     "sLengthMenu": "Показать _MENU_ записей",
                     "sInfo": "Показано _END_ из _TOTAL_ записей",
+                    "sSearch": "Поиск:",
                     "oPaginate": {
                         "sNext": "Далее",
                         "sPrevious": "Назад"
