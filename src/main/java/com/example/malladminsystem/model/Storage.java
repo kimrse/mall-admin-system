@@ -2,9 +2,20 @@ package com.example.malladminsystem.model;
 
 import java.time.*;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "storage")
 public class Storage {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idStorage;
-    private Long idStore;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_store")
+    private Store store;
     private String productName;
     private String supplier;
     private String manufacturerCountry;
@@ -16,9 +27,6 @@ public class Storage {
 
     public Long getIdStorage() {
         return idStorage;
-    }
-    public Long getIdStore() {
-        return idStore;
     }
     public String getProductName() {
         return productName;

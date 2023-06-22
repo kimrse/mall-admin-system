@@ -1,8 +1,18 @@
 package com.example.malladminsystem.model;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "store")
 public class Store {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idStore;
     private String storeTitle;
+    private String storeType;
     private String storeDescription;
     private Long squareArea;
     private Long floor;
@@ -17,6 +27,12 @@ public class Store {
     }
     public void setStoreTitle(String storeTitle) {
         this.storeTitle = storeTitle;
+    }
+    public String getStoreType() {
+        return storeType;
+    }
+    public void setStoreType(String storeType) {
+        this.storeType = storeType;
     }
     public String getStoreDescription() {
         return storeDescription;

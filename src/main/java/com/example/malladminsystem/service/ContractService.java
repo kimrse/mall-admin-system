@@ -1,5 +1,6 @@
 package com.example.malladminsystem.service;
 
+import java.time.*;
 import java.util.*;
 
 import com.example.malladminsystem.model.*;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.*;
 
 @Service
 @RequiredArgsConstructor
-public class ContractService implements ReportInterface {
+public class ContractService {
 
     private final ContractRepository contractRepository;
 
@@ -18,9 +19,19 @@ public class ContractService implements ReportInterface {
         return contracts;
     }
 
-    @Override
-    public Object createReport(Object model) {
-        return null;
+    public Contract getContract(long id) {
+        var contract = contractRepository.findById(id);
+        return contract;
+    }
+
+    public void addNewContract(Contract contract) {
+        var store = contract.getStore();
+        var curDate = LocalDate.now();
+
+        contract.setActive(true);
+        store.setOccupied(true);
+        contract.setSignedDate(curDate);
+        contractRepository.save(contract);
     }
 
 }

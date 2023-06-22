@@ -5,8 +5,7 @@ import java.util.*;
 import com.example.malladminsystem.model.*;
 import org.springframework.data.repository.*;
 
-public interface ContractRepository extends CrudRepository<Contract, Long> {
+public interface TenantRepository extends CrudRepository<Tenant, Long> {
 
-    List<Contract> findAll();
-    Contract findById(long id);
+    List<Tenant> findAll();
 }

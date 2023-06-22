@@ -1,6 +1,14 @@
 package com.example.malladminsystem.model;
 
+import jakarta.persistence.*;
+import lombok.*;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "tenant")
 public class Tenant {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTenant;
     private String firstName;
     private String lastName;

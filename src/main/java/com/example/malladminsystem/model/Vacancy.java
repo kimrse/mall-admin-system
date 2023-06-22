@@ -1,21 +1,25 @@
 package com.example.malladminsystem.model;
 
-public class Vacancy {
+import jakarta.persistence.*;
+import lombok.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "vacancy")
+public class Vacancy {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVacancy;
-    private Long idStore;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_store")
+    private Store store;
     private String vacancyTitle;
     private String vacancyDescription;
     private Double salary;
     private boolean isActive;
     public Long getIdVacancy() {
         return idVacancy;
-    }
-    public Long getIdStore() {
-        return idStore;
-    }
-    public void setIdStore(Long idStore) {
-        this.idStore = idStore;
     }
     public String getVacancyTitle() {
         return vacancyTitle;

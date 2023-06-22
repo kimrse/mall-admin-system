@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление арендотора</title>
+</head>
+<body>
+    <div class="container">
+
+      <h3>Добавить нового арендатора</h3>
+      <hr/>
+          <form th:action="@{/tenants}" th:object="${tenant}" method="POST">
+
+            <input type="text" th:field="*{firstName}" class="form-control col-4 mb-4" placeholder="Введите имя" />
+            <input type="text" th:field="*{lastName}" class="form-control col-4 mb-4" placeholder="Введите фамилию" />
+            <input type="text" th:field="*{middleName}" class="form-control col-4 mb-4" placeholder="Введите отчество" />
+            <input type="text" th:field="*{email}" class="form-control col-4 mb-4" placeholder="Введите почту" />
+            <input type="text" th:field="*{address}" class="form-control col-4 mb-4" placeholder="Введите адрес" />
+            <input type="text" th:field="*{phone}" class="form-control col-4 mb-4" placeholder="Введите номер телефона" />
+            <button type="submit" class="btn">Добавить</button>
+            <input type="hidden" th:field="*{idTenant}" />
+
+          </form>
+      <hr/>
+      <a th:href="@{/list}">Back to list</a>
+    </div>
+</body>
+</html>

@@ -2,9 +2,20 @@ package com.example.malladminsystem.model;
 
 import java.time.*;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "invoice")
 public class Invoice {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idInvoice;
-    private Long idContract;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_contract")
+    private Contract contract;
     private Double fee;
     private Long tax;
     private Double totalCost;
@@ -13,12 +24,6 @@ public class Invoice {
     private boolean isPaid;
     public Long getIdInvoice() {
         return idInvoice;
-    }
-    public Long getIdContract() {
-        return idContract;
-    }
-    public void setIdContract(Long idContract) {
-        this.idContract = idContract;
     }
     public Double getFee() {
         return fee;

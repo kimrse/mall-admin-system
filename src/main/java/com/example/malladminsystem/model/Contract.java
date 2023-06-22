@@ -2,15 +2,24 @@ package com.example.malladminsystem.model;
 
 import java.time.*;
 
+import com.example.malladminsystem.dto.*;
 import jakarta.persistence.*;
+import lombok.*;
 
-@Entity
-public class Contract {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "contract")
+public class Contract implements ReportInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idContract;
-    private Long idTenant;
-    private Long idStore;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tenant")
+    private Tenant tenant;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_store")
+    private Store store;
     private String details;
     private LocalDate signedDate;
     private LocalDate endDate;
@@ -19,12 +28,6 @@ public class Contract {
 
     public Long getIdContract() {
         return idContract;
-    }
-    public Long getIdTenant() {
-        return idTenant;
-    }
-    public Long getIdStore() {
-        return idStore;
     }
     public String getDetails() {
         return details;
@@ -55,6 +58,20 @@ public class Contract {
     }
     public void setOverdue(boolean overdue) {
         isOverdue = overdue;
+    }
+
+    @Override
+    public Object createReport() {
+        var report = new ContractCreationReport(
+            tenant.getFirstName(), tenant.getLastName(),
+            tenant.getMiddleName(), tenant.getPhone(),
+            store.getStoreTitle(), store.getStoreType(),
+            store.getSquareArea(), store.getFloor(),
+            store.getMonthlyCost(), this.getDetails(),
+            this.getSignedDate(), this.getEndDate(),
+            this.isOverdue()
+        );
+        return report;
     }
 
 }

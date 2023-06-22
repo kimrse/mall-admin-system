@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<!--  <link rel="stylesheet" th:href="@{/css/style.css}">-->
+  <title>Договор</title>
+</head>
+  <body>
+    <div class="movie">
+      <div th:object="${contract}" class="movie-info-box">
+        <div class="movie-info">
+          <h4>Информация о договоре:</h4>
+          <h5>Номер договора: </h5><span th:text="*{idContract}"></span>
+          <h5>ФИО: </h5><span th:text="*{tenant.firstName+' '+tenant.lastName+' '+tenant.middleName}"></span>
+          <h5>Номер Телефона: </h5><span th:text="*{tenant.phone}"></span>
+          <h5>Название магазина: </h5><span th:text="*{store.storeTitle}"></span>
+          <h5>Тип магазина: </h5><span th:text="*{store.storeType}"></span>
+          <h5>Описание магазина: </h5><span th:text="*{store.storeDescription}"></span>
+          <h5>Площадь: </h5><span th:text="*{store.squareArea}"></span>
+          <h5>Этаж: </h5><span th:text="*{store.floor}"></span>
+          <h5>Стоимость аренды в месяц: </h5><span th:text="*{store.monthlyCost}"></span>
+          <h5>Детальная информация: </h5><span th:text="*{details}"></span>
+          <h5>Дата подписания: </h5><span th:text="*{signedDate}"></span>
+          <h5>Дата окончания действия договора: </h5><span th:text="*{endDate}"></span>
+        </div>
+      </div>
+      <div class="movie-desc">
+      </div>
+    </div>
+  </body>
+</html>

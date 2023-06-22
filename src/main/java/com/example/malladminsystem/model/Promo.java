@@ -2,7 +2,16 @@ package com.example.malladminsystem.model;
 
 import java.time.*;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "promo")
 public class Promo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPromo;
     private String promoType;
     private String promoDescription;

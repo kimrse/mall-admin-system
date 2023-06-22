@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Перечень арендаторов</title>
+</head>
+<body>
+<div class="container">
+
+    <h3>Перечень арендаторов</h3>
+
+    <hr/>
+    <!--    <a th:href="@{/addEmployeeForm}" class="btn btn-primary">Add Employee</a>-->
+    <br/><br/>
+    <table class="table table-bordered table-striped" id="employeeTable">
+
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Отчество</th>
+            <th>Почта</th>
+            <th>Адрес</th>
+            <th>Номер телефона</th>
+            <th>Статус должника</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tenant: ${tenants}">
+            <td th:text="${tenant.firstName}"></td>
+            <td th:text="${tenant.lastName}"></td>
+            <td th:text="${tenant.middleName}"></td>
+            <td th:text="${tenant.email}"></td>
+            <td th:text="${tenant.phone}"></td>
+            <td th:text="${tenant.address}"></td>
+            <td th:text="${tenant.isDebtor()}"></td>
+            <!--            <td>-->
+            <!--                <a th:href="@{/showUpdateForm(employeeId=${employee.id})}" class="btn btn-info">Update</a>-->
+
+            <!--                <a th:href="@{/deleteEmployee(employeeId=${employee.id})}" class="btn btn-danger ml-2">Delete</a>-->
+            <!--            </td>-->
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

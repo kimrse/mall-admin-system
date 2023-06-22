@@ -2,9 +2,20 @@ package com.example.malladminsystem.model;
 
 import java.time.*;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "employee")
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmployee;
-    private Long idStore;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_store")
+    private Store store;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -17,12 +28,6 @@ public class Employee {
     }
     public void setIdEmployee(Long idEmployee) {
         this.idEmployee = idEmployee;
-    }
-    public Long getIdStore() {
-        return idStore;
-    }
-    public void setIdStore(Long idStore) {
-        this.idStore = idStore;
     }
     public String getFirstName() {
         return firstName;
