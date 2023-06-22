@@ -2,17 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Новый сотрудник</title>
+  <title>Добавление сотрудника</title>
+  <link rel="stylesheet" th:href="@{../css/style.css}"/>
 </head>
+<header>
+  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
+  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
+  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
+  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
+  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
+  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
+  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
+</header>
 <body>
-<div class="container">
+<div class="movie">
 
   <h3>Добавить нового сотрудника</h3>
   <hr/>
   <form th:action="@{/employees}" th:object="${employee}" method="POST">
-
-    <input type="text" th:field="*{details}" class="form-control col-4 mb-4" placeholder="Введите описание договора" />
-    <input type="date" th:field="*{endDate}" class="form-control col-4 mb-4" placeholder="Выберите дату оканчания договора" />
+    <select th:field="*{vacancy}">
+      <option value="0">Выберите вакансию</option>
+      <option th:each="vacancy : ${vacancies}" th:value="${vacancy.idVacancy}"
+              th:text="${'Наименование: '+vacancy.vacancyTitle+' , Магазин: '+vacancy.store.storeTitle+', Зарплата: '+vacancy.salary}">
+      </option>
+    </select>
+    <input type="text" th:field="*{firstName}" class="form-control col-4 mb-4" placeholder="Введите имя" />
+    <input type="text" th:field="*{lastName}" class="form-control col-4 mb-4" placeholder="Введите фамилию" />
+    <input type="text" th:field="*{middleName}" class="form-control col-4 mb-4" placeholder="Введите отчество" />
+    <input type="text" th:field="*{phone}" class="form-control col-4 mb-4" placeholder="Введите Номер телефона" />
     <button type="submit" class="btn">Добавить</button>
   </form>
   <hr/>

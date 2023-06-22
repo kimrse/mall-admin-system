@@ -2,9 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Сотрудники</title>
+  <link rel="stylesheet" th:href="@{../css/style.css}"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
+<header>
+  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
+  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
+  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
+  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
+  <a class="head btn-hd btn-selected" th:href="@{/employees}">Сотрудники</a>
+  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
+  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
+</header>
 <body>
-
+<div class="movie">
+  <h3>Перечень сотрудников</h3>
+  <hr/>
+  <br/><br/>
+  <table class="table table-bordered table-striped" id="employeeTable">
+    <thead>
+    <tr>
+      <th>ФИО</th>
+      <th>Магазин</th>
+      <th>Должность</th>
+      <th>Дата найма</th>
+      <th>Зарплата</th>
+      <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee: ${employees}">
+      <td th:text="${employee.firstName+' '+employee.lastName+' '+employee.middleName}"></td>
+      <td>
+        <a th:href="@{/stores/(id=${employee.store.idStore})}"
+           th:text="${employee.store.storeTitle}">
+        </a>
+      </td>
+      <td th:text="${employee.jobTitle}"></td>
+      <td th:text="${employee.hireDate}"></td>
+      <td th:text="${employee.monthlySalary}"></td>
+      <td>
+        <a th:href="@{/employees/(id=${employee.idEmployee})}">Подробнее</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>

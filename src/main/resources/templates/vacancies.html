@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Вакансии</title>
+  <link rel="stylesheet" th:href="@{../css/style.css}"/>
 </head>
+<header>
+  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
+  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
+  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
+  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
+  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
+  <a class="head btn-hd btn-selected" th:href="@{/vacancies}">Вакансии</a>
+  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
+</header>
   <body>
-    <div class="container">
+    <div class="movie">
       <h3>Перечень вакансий</h3>
       <hr/>
       <br/><br/>
@@ -19,21 +30,21 @@
             <th>Действия</th>
           </tr>
         </thead>
-          <tbody>
-            <tr th:each="vacancy: ${vacancies}">
-              <td th:text="${vacancy.vacancyTitle}"></td>
-              <td>
-                <a th:href="@{/stores/(id=${vacancy.store.idStore})}"
-                   th:text="${vacancy.store.storeTitle}">
-                </a>
-              </td>
-              <td th:text="${vacancy.salary}"></td>
-              <td th:text="${vacancy.isActive()}"></td>
-              <td>
-                <a th:href="@{/vacancies/(id=${vacancy.idVacancy})}">Подробнее</a>
-              </td>
-            </tr>
-          </tbody>
+        <tbody>
+          <tr th:each="vacancy: ${vacancies}">
+            <td th:text="${vacancy.vacancyTitle}"></td>
+            <td>
+              <a th:href="@{/stores/(id=${vacancy.store.idStore})}"
+                 th:text="${vacancy.store.storeTitle}">
+              </a>
+            </td>
+            <td th:text="${vacancy.salary}"></td>
+            <td th:text="${vacancy.isActive()}"></td>
+            <td>
+              <a th:href="@{/vacancies/(id=${vacancy.idVacancy})}">Подробнее</a>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </body>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Поставки</title>
+  <link rel="stylesheet" th:href="@{../css/style.css}"/>
+</head>
+<header>
+  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
+  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
+  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
+  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
+  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
+  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
+  <a class="head btn-hd btn-selected" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
+</header>
+<body>
+  <div class="movie">
+    <table id="employeeTable">
+      <thead>
+      <tr>
+        <th>Номер поставки</th>
+        <th>Наименование поставки</th>
+        <th>Магазин</th>
+        <th>Поставщик</th>
+        <th>Страна производитель</th>
+        <th>Количество товара</th>
+        <th>Дата прибытия на склад</th>
+        <th>Статус доставки в магазин</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="item: ${storage}">
+        <td th:text="${item.idStorage}"></td>
+        <td th:text="${item.productName}"></td>
+        <td th:text="${item.store.storeTitle}"></td>
+        <td th:text="${item.supplier}"></td>
+        <td th:text="${item.manufacturerCountry}"></td>
+        <td th:text="${item.amount}"></td>
+        <td th:text="${item.arrivalDate}"></td>
+        <td th:text="${item.delivered}"></td>
+        <td>
+          <a th:href="@{/storage/(id=${item.idStorage})}">Подробнее</a>
+        </td>
+
+        <!--              <td>-->
+        <!--                  <a th:href="@{/showUpdateForm(employeeId=${employee.id})}" class="btn btn-info">Update</a>-->
+
+        <!--                  <a th:href="@{/deleteEmployee(employeeId=${employee.id})}" class="btn btn-danger ml-2">Delete</a>-->
+        <!--              </td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

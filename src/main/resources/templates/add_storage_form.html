@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавление поставок</title>
+  <link rel="stylesheet" th:href="@{../css/style.css}"/>
+</head>
+<header>
+  <a class="head btn-hd" th:href="@{tenants}">Арендаторы</a>
+  <a class="head btn-hd" th:href="@{contracts}">Договоры</a>
+  <a class="head btn-hd" th:href="@{invoices}">Учет</a>
+  <a class="head btn-hd" th:href="@{stores}">Магазины</a>
+  <a class="head btn-hd" th:href="@{employees}">Сотрудники</a>
+  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
+  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
+</header>
+<body>
+  <div class="movie">
+    <h3>Добавить новую поставку</h3>
+    <hr/>
+    <form th:action="@{/storage}" th:object="${storage}" method="POST">
+      <select th:field="*{store}">
+        <option value="0">Выберите магазин</option>
+        <option th:each="store : ${stores}" th:value="${store.idStore}"
+                th:text="${'ID Павильона: '+store.idStore+' , Название магазина: '+store.storeTitle}">
+        </option>
+      </select>
+      <input type="text" th:field="*{productName}" placeholder="Наименование" />
+      <input type="text" th:field="*{supplier}" placeholder="Поставщик" />
+      <input type="text" th:field="*{manufacturerCountry}" placeholder="Страна-производитель" />
+      <input type="text" th:field="*{amount}" placeholder="Количество товара" />
+      <input type="text" th:field="*{costPerDay}" placeholder="Стоимость хранения в день" />
+      <button type="submit" class="btn">Добавить</button>
+    </form>
+    <hr/>
+    <a th:href="@{/list}">Back to list</a>
+  </div>
+</body>
+</html>

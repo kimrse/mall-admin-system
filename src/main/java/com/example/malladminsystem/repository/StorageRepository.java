@@ -7,10 +7,9 @@ import org.springframework.data.repository.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StoreRepository extends CrudRepository<Store, Long> {
+public interface StorageRepository extends CrudRepository<Storage, Long> {
 
-    List<Store> findAllByIsOccupiedIsFalse();
-    List<Store> findAllByIsOccupiedIsTrue();
-    List<Store> findAll();
-    Store findById(long id);
+    Storage findById(long id);
+
+    List<Storage> findAll();
 }

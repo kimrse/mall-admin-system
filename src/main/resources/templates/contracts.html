@@ -2,12 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contracts</title>
+    <title>Договоры</title>
+  <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
 </head>
+<header>
+  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
+  <a class="head btn-hd btn-selected" th:href="@{/contracts}">Договоры</a>
+  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
+  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
+  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
+  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
+  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
+</header>
 <body>
-<div class="container">
+<div class="movie">
 
-    <h3>List Contracts</h3>
+    <h3>Перечень договоров</h3>
 
     <hr/>
 <!--    <a th:href="@{/addEmployeeForm}" class="btn btn-primary">Add Employee</a>-->

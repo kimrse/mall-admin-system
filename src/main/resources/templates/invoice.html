@@ -2,8 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Учета</title>
+  <title>Учет</title>
+  <link rel="stylesheet" th:href="@{../css/style.css}"/>
 </head>
+<header>
+  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
+  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
+  <a class="head btn-hd btn-selected" th:href="@{/invoices}">Учет</a>
+  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
+  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
+  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
+  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
+</header>
 <body>
 <div class="movie">
   <div th:object="${invoice}" class="movie-info-box">

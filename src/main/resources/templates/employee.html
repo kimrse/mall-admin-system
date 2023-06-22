@@ -2,9 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Сотрудники</title>
+  <link rel="stylesheet" th:href="@{../css/style.css}"/>
 </head>
+<header>
+  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
+  <a class="head btn-hd btn-selected" th:href="@{/contracts}">Договоры</a>
+  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
+  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
+  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
+  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
+  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
+</header>
 <body>
-
+<div class="movie">
+  <div th:object="${employee}" class="movie-info-box">
+    <div class="movie-info">
+      <h4>Информация о сотруднике:</h4>
+      <h5>Номер сотрудника: </h5><span th:text="*{idEmployee}"></span>
+      <h5>ФИО: </h5><span th:text="*{firstName+' '+lastName+' '+middleName}"></span>
+      <h5>Номер телефона: </h5><span th:text="*{phone}"></span>
+      <h5>Название магазина: </h5>
+        <span>
+          <a th:href="@{/stores/(id=${employee.store.idStore})}" th:text="${employee.store.storeTitle}"></a>
+        </span>
+      <h5>Должность: </h5><span th:text="*{jobTitle}"></span>
+      <h5>Зарплата: </h5><span th:text="*{monthlySalary}"></span>
+      <h5>Дата найма: </h5><span th:text="*{hireDate}"></span>
+    </div>
+<!--    <a th:href="@{/invoices/paid(id=${invoice.idInvoice})}" class="btn btn-info">Установить оплаченым</a>-->
+  </div>
+  <div class="movie-desc">
+  </div>
+</div>
 </body>
 </html>

@@ -4,11 +4,22 @@
   <meta charset="UTF-8">
 <!--  <link rel="stylesheet" th:href="@{/css/style.css}">-->
   <title>Договор</title>
+  <link th:href="@{../css/style.css}" rel="stylesheet"/>
 </head>
+<header>
+  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
+  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
+  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
+  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
+  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
+  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
+  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
+</header>
   <body>
     <div class="movie">
       <div th:object="${contract}" class="movie-info-box">
-        <div class="movie-info">
+        <div class="movie">
           <h4>Информация о договоре:</h4>
           <h5>Номер договора: </h5><span th:text="*{idContract}"></span>
           <h5>ФИО: </h5><span th:text="*{tenant.firstName+' '+tenant.lastName+' '+tenant.middleName}"></span>

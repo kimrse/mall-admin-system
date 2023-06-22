@@ -23,6 +23,11 @@ public class StoreService {
         return stores;
     }
 
+    public List<Store> getAllOccupiedStores() {
+        var stores = storeRepository.findAllByIsOccupiedIsTrue();;
+        return stores;
+    }
+
     public Store getStoreById(long id) {
         var store = storeRepository.findById(id);
         return store;

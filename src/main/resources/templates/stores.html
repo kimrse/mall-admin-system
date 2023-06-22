@@ -3,13 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Магазины</title>
+  <link rel="stylesheet" th:href="@{../css/style.css}"/>
 </head>
+<header>
+  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
+  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
+  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
+  <a class="head btn-hd btn-selected" th:href="@{/stores}">Магазины</a>
+  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
+  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
+  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
+</header>
 <body>
-<div class="container">
+<div class="movie">
   <h3>Перечень магазинов</h3>
   <hr/>
   <br/><br/>
-  <table class="table table-bordered table-striped" id="employeeTable">
+  <table id="employeeTable">
     <thead>
     <tr>
       <th>Название</th>
@@ -28,7 +39,7 @@
       <td th:text="${store.monthlyCost}"></td>
       <td th:text="${store.occupied}"></td>
       <td>
-        <a th:href="@{/stores/(id=${store.idStore})}">Подробнее</a>
+        <a class="btn" th:href="@{/stores/(id=${store.idStore})}">Подробнее</a>
       </td>
     </tr>
     </tbody>
