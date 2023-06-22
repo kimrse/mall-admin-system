@@ -45,8 +45,10 @@ public class StorageService {
         return diff;
     }
 
-    public void deliverStorage(Storage storage) {
+    public void deliverStorage(long id) {
+        var storage = storageRepository.findById(id);
         var curdate = LocalDate.now();
+
         storage.setDeliveryDate(curdate);
         storage.setDelivered(true);
         storageRepository.save(storage);

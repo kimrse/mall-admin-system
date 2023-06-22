@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <title>Поставки</title>
   <link rel="stylesheet" th:href="@{../css/style.css}"/>
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
 </head>
 <header>
   <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
@@ -12,12 +19,13 @@
   <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
   <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
   <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
-  <a class="head btn-hd btn-selected" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd btn-selected" th:href="@{/storage}">Поставки</a>
   <a class="head btn-hd" th:href="@{/promos}">Акции</a>
 </header>
 <body>
   <div class="movie">
-    <table id="employeeTable">
+    <a th:href="@{/storage/new}">Добавить поставку</a>
+    <table id="storageTable">
       <thead>
       <tr>
         <th>Номер поставки</th>
@@ -43,15 +51,29 @@
         <td>
           <a th:href="@{/storage/(id=${item.idStorage})}">Подробнее</a>
         </td>
-
-        <!--              <td>-->
-        <!--                  <a th:href="@{/showUpdateForm(employeeId=${employee.id})}" class="btn btn-info">Update</a>-->
-
-        <!--                  <a th:href="@{/deleteEmployee(employeeId=${employee.id})}" class="btn btn-danger ml-2">Delete</a>-->
-        <!--              </td>-->
       </tr>
       </tbody>
     </table>
   </div>
+  <script>
+      $(document).ready(function() {
+          $("#storageTable").DataTable({
+              'aoColumnDefs': [{
+                  'bSortable': false,
+                  'aTargets': [-1] /* 1st one, start by the right */
+              }],
+              "oLanguage": {
+                  "sLengthMenu": "Показать _MENU_ записей",
+                  "sInfo": "Показано _END_ из _TOTAL_ записей",
+                  "oPaginate": {
+                      "sNext": "Далее",
+                      "sPrevious": "Назад"
+                  },
+                  "sInfoEmpty": "Нет записей",
+                  "sEmptyTable": "Нет записей",
+                  "sZeroRecords": "Нет записей",}
+          });
+      })
+  </script>
 </body>
 </html>

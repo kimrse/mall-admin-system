@@ -12,11 +12,12 @@
   <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
   <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
   <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
-  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/storage}">Поставки</a>
   <a class="head btn-hd" th:href="@{/promos}">Акции</a>
 </header>
 <body>
 <div class="movie">
+  <a th:href="@{/storage/deliver/(id=${storage.idStorage})}">Доставить</a>
   <div th:object="${storage}" class="movie-info-box">
     <div class="movie-info">
       <h4>Информация о павильоне:</h4>

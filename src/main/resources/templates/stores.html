@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <title>Магазины</title>
   <link rel="stylesheet" th:href="@{../css/style.css}"/>
+  <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
 </head>
 <header>
   <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
@@ -12,15 +18,16 @@
   <a class="head btn-hd btn-selected" th:href="@{/stores}">Магазины</a>
   <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
   <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
-  <a class="head btn-hd" th:href="@{/storage}">Склад</a>
+  <a class="head btn-hd" th:href="@{/storage}">Поставки</a>
   <a class="head btn-hd" th:href="@{/promos}">Акции</a>
 </header>
 <body>
 <div class="movie">
+  <a th:href="@{/stores/new}">Добавить магазин</a>
   <h3>Перечень магазинов</h3>
   <hr/>
   <br/><br/>
-  <table id="employeeTable">
+  <table class="table" id="storeTable">
     <thead>
     <tr>
       <th>Название</th>
@@ -45,5 +52,27 @@
     </tbody>
   </table>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#storeTable").DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1] /* 1st one, start by the right */
+            }],
+            "oLanguage": {
+                "sLengthMenu": "Показать _MENU_ записей",
+                "sInfo": "Показано _END_ из _TOTAL_ записей",
+                "oPaginate": {
+                    "sNext": "Далее",
+                    "sPrevious": "Назад"
+                },
+                "sInfoEmpty": "Нет записей",
+                "sEmptyTable": "Нет записей",
+                "sZeroRecords": "Нет записей",}
+        });
+    })
+</script>
 </body>
 </html>

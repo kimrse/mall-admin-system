@@ -1,7 +1,6 @@
 package com.example.malladminsystem.controller;
 
 import com.example.malladminsystem.model.*;
-import com.example.malladminsystem.repository.*;
 import com.example.malladminsystem.service.*;
 import lombok.*;
 import org.springframework.stereotype.*;
@@ -47,6 +46,12 @@ public class StorageController {
     @PostMapping
     public String addStorage(@ModelAttribute("storage") Storage storage) {
         storageService.addNewPosition(storage);
+        return "redirect:/storage";
+    }
+
+    @GetMapping("/deliver/")
+    public String deliverStorage(@RequestParam Long id) {
+        storageService.deliverStorage(id);
         return "redirect:/storage";
     }
 
