@@ -8,4 +8,6 @@ import org.springframework.data.repository.*;
 public interface TenantRepository extends CrudRepository<Tenant, Long> {
 
     List<Tenant> findAll();
+
+    Tenant findById(long id);
 }

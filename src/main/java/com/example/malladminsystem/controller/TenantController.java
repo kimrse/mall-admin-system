@@ -14,11 +14,23 @@ public class TenantController {
 
     private final TenantService tenantService;
 
+    private final ContractService contractService;
+
     @GetMapping()
     public String getTenants(Model model) {
         var tenants = tenantService.getAllTenants();
         model.addAttribute("tenants", tenants);
         return "tenants";
+    }
+
+    @GetMapping("/")
+    public String getTenant(@RequestParam Long id, Model model) {
+        var tenant = tenantService.getTenantById(id);
+        var contracts = contractService.getAllTenantContracts(tenant);
+
+        model.addAttribute("tenant", tenant);
+        model.addAttribute("contracts", contracts);
+        return "tenant";
     }
 
     @GetMapping("/new")

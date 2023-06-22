@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Учета</title>
+</head>
+<body>
+<div class="movie">
+  <div th:object="${invoice}" class="movie-info-box">
+    <div class="movie-info">
+      <h4>Информация о договоре:</h4>
+      <h5>Номер договора: </h5><span th:text="*{contract.idContract}"></span>
+      <h5>ФИО: </h5><span th:text="*{contract.tenant.firstName+' '+contract.tenant.lastName+' '+contract.tenant.middleName}"></span>
+      <h5>Название магазина: </h5><span th:text="*{contract.store.storeTitle}"></span>
+      <h5>Стоимость аренды в месяц: </h5><span th:text="*{contract.store.monthlyCost}"></span>
+      <h5>Налог: </h5><span th:text="*{tax}"></span>
+      <h5>Штраф: </h5><span th:text="*{fee}"></span>
+      <h5>Общая стоимость: </h5><span th:text="*{totalCost}"></span>
+      <h5>Статус оплаты: </h5><span th:text="*{isPaid()}"></span>
+    </div>
+      <a th:href="@{/invoices/paid(id=${invoice.idInvoice})}" class="btn btn-info">Установить оплаченым</a>
+  </div>
+  <div class="movie-desc">
+  </div>
+</div>
+</body>
+</html>

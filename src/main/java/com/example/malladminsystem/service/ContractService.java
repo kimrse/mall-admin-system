@@ -13,9 +13,15 @@ import org.springframework.stereotype.*;
 public class ContractService {
 
     private final ContractRepository contractRepository;
+    private final TenantRepository tenantRepository;
 
     public List<Contract> getAllContracts() {
         var contracts = contractRepository.findAll();
+        return contracts;
+    }
+
+    public List<Contract> getAllTenantContracts(Tenant tenant) {
+        var contracts = contractRepository.findAllByTenant(tenant);
         return contracts;
     }
 

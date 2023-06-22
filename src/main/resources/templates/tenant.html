@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Арендатор</title>
+</head>
+<body>
+<div class="movie">
+  <div th:object="${tenant}" class="movie-info-box">
+    <div class="movie-info">
+      <h4>Информация об арендаторе:</h4>
+      <h5>Номер арендатора: </h5><span th:text="*{idTenant}"></span>
+      <h5>ФИО: </h5><span th:text="*{firstName+' '+lastName+' '+middleName}"></span>
+      <h5>Почта: </h5><span th:text="*{email}"></span>
+      <h5>Адрес: </h5><span th:text="*{address}"></span>
+      <h5>Номер телефона: </h5><span th:text="*{phone}"></span>
+      <h5>Статус: </h5><span th:text="*{isDebtor()}"></span>
+      <h5>Договоры: </h5><span th:text="*{isDebtor()}"></span>
+    </div>
+  </div>
+  <div class="movie-desc">
+    <table id="employeeTable">
+
+      <thead>
+      <tr>
+        <th>Номер договора</th>
+        <th>Название магазина</th>
+        <th>Дата подписания</th>
+        <th>Дата окончания действия</th>
+        <th>Действия</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="contract: ${contracts}">
+        <td th:text="${contract.idContract}"></td>
+        <td th:text="${contract.store.storeTitle}"></td>
+        <td th:text="${contract.signedDate}"></td>
+        <td th:text="${contract.endDate}"></td>
+        <td>
+          <a th:href="@{/contracts/(id=${contract.idContract})}">Подробнее</a>
+        </td>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+</body>
+</html>

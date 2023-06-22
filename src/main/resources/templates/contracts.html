@@ -12,54 +12,57 @@
     <hr/>
 <!--    <a th:href="@{/addEmployeeForm}" class="btn btn-primary">Add Employee</a>-->
     <br/><br/>
-<!--    <table class="table table-bordered table-striped" id="employeeTable">-->
+  <table class="table table-bordered table-striped" id="employeeTable">
 
-<!--        <thead>-->
-<!--            <tr>-->
-<!--                <th>Номер договора</th>-->
-<!--                <th>IdTenant</th>-->
-<!--                <th>IdStore</th>-->
-<!--                <th>Actions</th>-->
-<!--            </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr th:each="contract: ${contracts}">-->
-<!--            <td th:text="${contract.idContract}"></td>-->
-<!--            <td th:text="${contract.tenant}"></td>-->
-<!--            <td th:text="${contract.store}"></td>-->
-<!--&lt;!&ndash;            <td>&ndash;&gt;-->
-<!--&lt;!&ndash;                <a th:href="@{/showUpdateForm(employeeId=${employee.id})}" class="btn btn-info">Update</a>&ndash;&gt;-->
+    <thead>
+      <tr>
+        <th>Номер договора</th>
+        <th>IdTenant</th>
+        <th>IdStore</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+      <tbody>
+      <tr th:each="contract: ${contracts}">
+        <td th:text="${contract.idContract}"></td>
+        <td th:text="${contract.tenant}"></td>
+        <td th:text="${contract.store}"></td>
+        <td>
+          <a th:href="@{/contracts/(id=${contract.idContract})}">Подробнее</a>
+        </td>
+<!--            <td>-->
+<!--                <a th:href="@{/showUpdateForm(employeeId=${employee.id})}" class="btn btn-info">Update</a>-->
 
-<!--&lt;!&ndash;                <a th:href="@{/deleteEmployee(employeeId=${employee.id})}" class="btn btn-danger ml-2">Delete</a>&ndash;&gt;-->
-<!--&lt;!&ndash;            </td>&ndash;&gt;-->
-<!--        </tr>-->
-<!--        </tbody>-->
+<!--                <a th:href="@{/deleteEmployee(employeeId=${employee.id})}" class="btn btn-danger ml-2">Delete</a>-->
+<!--            </td>-->
+      </tr>
+      </tbody>
 
-<!--    </table>-->
-  <div class="movie">
-    <div class="movie-info-box">
-      <div class="movie-info">
-        <h4>Movie info:</h4>
-        <h5>Length: </h5><p>{{duration}} Min.</p>
-        <h5>Age restriction: </h5>
-        <p>{{restriction}}.</p>
-        <h5>Revenue: </h5>
-        {{revenue}} Rub.
-        <h5>Rating: </h5>
-        {{rating}} / 100
-        <h5>Genres: </h5>
-        {{render_movie(genres)}}
-        <h5>Director: </h5>
-        <p>{{director}}.</p>
-        <h5>Actors: </h5>
-        {{render_movie(actors)}}
-      </div>
-    </div>
-    <div class="movie-desc">
-      <h5>Description: </h5>
-      <p>{{description}}</p>
-    </div>
-  </div>
+  </table>
+<!--  <div class="movie">-->
+<!--    <div class="movie-info-box">-->
+<!--      <div class="movie-info">-->
+<!--        <h4>Movie info:</h4>-->
+<!--        <h5>Length: </h5><p>{{duration}} Min.</p>-->
+<!--        <h5>Age restriction: </h5>-->
+<!--        <p>{{restriction}}.</p>-->
+<!--        <h5>Revenue: </h5>-->
+<!--        {{revenue}} Rub.-->
+<!--        <h5>Rating: </h5>-->
+<!--        {{rating}} / 100-->
+<!--        <h5>Genres: </h5>-->
+<!--        {{render_movie(genres)}}-->
+<!--        <h5>Director: </h5>-->
+<!--        <p>{{director}}.</p>-->
+<!--        <h5>Actors: </h5>-->
+<!--        {{render_movie(actors)}}-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="movie-desc">-->
+<!--      <h5>Description: </h5>-->
+<!--      <p>{{description}}</p>-->
+<!--    </div>-->
+<!--  </div>-->
 </div>
 </body>
 </html>

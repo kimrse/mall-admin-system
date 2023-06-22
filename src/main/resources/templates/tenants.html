@@ -35,6 +35,9 @@
             <td th:text="${tenant.phone}"></td>
             <td th:text="${tenant.address}"></td>
             <td th:text="${tenant.isDebtor()}"></td>
+            <td>
+              <a th:href="@{/tenants/(id=${tenant.idTenant})}">Подробнее</a>
+            </td>
             <!--            <td>-->
             <!--                <a th:href="@{/showUpdateForm(employeeId=${employee.id})}" class="btn btn-info">Update</a>-->
 

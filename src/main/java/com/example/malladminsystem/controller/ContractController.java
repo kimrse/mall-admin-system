@@ -23,8 +23,8 @@ public class ContractController {
         return "contracts";
     }
 
-    @GetMapping("/{id}")
-    public String getContractById(Model model, @PathVariable Long id) {
+    @GetMapping("/")
+    public String getContractById(Model model, @RequestParam Long id) {
         var contract = contractService.getContract(id);
         model.addAttribute("contract", contract);
         return "contract";

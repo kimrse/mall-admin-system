@@ -21,4 +21,9 @@ public class TenantService {
         var tenants = tenantRepository.findAll();
         return tenants;
     }
+
+    public Tenant getTenantById(long id) {
+        var tenant = tenantRepository.findById(id);
+        return tenant;
+    }
 }
