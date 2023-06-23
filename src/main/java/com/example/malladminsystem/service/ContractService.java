@@ -19,6 +19,11 @@ public class ContractService {
         return contracts;
     }
 
+    public List<Contract> getAllActiveContracts() {
+        var contracts = contractRepository.findAllByIsActiveIsTrue();
+        return contracts;
+    }
+
     public List<Contract> getAllTenantContracts(Tenant tenant) {
         var contracts = contractRepository.findAllByTenant(tenant);
         return contracts;

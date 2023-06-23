@@ -14,9 +14,9 @@
 </head>
 <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/contracts}">Договоры</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Магазины</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
@@ -25,7 +25,12 @@
 <body>
   <div class="container pt-4 my-5">
     <h3 class="text-center p-3">Информация о договоре:</h3>
-    <div class="d-inline-flex" th:object="${contract}">
+    <span class="container p-4 m-4">
+      <a th:href="@{/tenants/(id=${contract.tenant.idTenant})}" class="btn btn-primary">Перейти к арендатору</a>
+      <a th:href="@{/stores/(id=${contract.store.idStore})}" class="btn btn-info">Перейти к магазину</a>
+    </span>
+    <hr/>
+    <div class="container d-inline-flex" th:object="${contract}">
       <div class="shadow container p-4 m-4">
         <h5>Номер договора: </h5><span th:text="*{idContract}"></span>
         <h5>ФИО: </h5><span th:text="*{tenant.firstName+' '+tenant.lastName+' '+tenant.middleName}"></span>

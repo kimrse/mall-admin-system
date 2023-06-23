@@ -14,8 +14,8 @@
 <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Магазины</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
@@ -25,6 +25,8 @@
   <div class="container pt-4 my-5">
     <h3 class="text-center p-3">Информация о документе учета:</h3>
     <span class="container p-4 m-4">
+      <a th:href="@{/tenants/(id=${invoice.contract.tenant.idTenant})}" class="btn btn-primary">Перейти к арендатору</a>
+      <a th:href="@{/stores/(id=${invoice.contract.store.idStore})}" class="btn btn-info">Перейти к магазину</a>
       <a th:href="@{/invoices/paid(id=${invoice.idInvoice})}" class="btn btn-warning">Установить оплаченым</a>
     </span>
     <hr/>
@@ -34,6 +36,7 @@
         <h5>ФИО: </h5><span th:text="*{contract.tenant.firstName+' '+contract.tenant.lastName+' '+contract.tenant.middleName}"></span>
         <h5>Название магазина: </h5><span th:text="*{contract.store.storeTitle}"></span>
         <h5>Стоимость аренды в месяц: </h5><span th:text="*{contract.store.monthlyCost}"></span>
+        <h5>Общая стоимость аренды склада: </h5><span th:text="${storageCost}"></span>
         <h5>Налог: </h5><span th:text="*{tax}"></span>
         <h5>Штраф: </h5><span th:text="*{fee}"></span>
         <h5>Общая стоимость: </h5><span th:text="*{totalCost}"></span>

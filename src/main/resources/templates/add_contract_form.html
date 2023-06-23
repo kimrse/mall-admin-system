@@ -13,9 +13,9 @@
   </head>
   <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
     <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
-    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/contracts}">Договоры</a>
     <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Магазины</a>
+    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
     <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
     <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
     <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
@@ -48,7 +48,6 @@
                     th:field="*{details}" placeholder="Введите описание договора">
           </textarea>
         </div>
-<!--        <input type="text" th:field="*{details}" class="form-control col-4 mb-4" placeholder="Введите описание договора" />-->
         <label for="endDate">Действителен до:</label>
         <input id="endDate" type="date" th:field="*{endDate}" class="form-control col-4 mb-4" placeholder="Выберите дату оканчания договора" />
         <button type="submit" class="btn btn-primary">Добавить</button>

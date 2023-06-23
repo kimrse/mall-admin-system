@@ -20,6 +20,11 @@ public class StorageService {
         return storage;
     }
 
+    public List<Storage> getAllStoreStorage(long id) {
+        var storage = storageRepository.findAllByStoreIdStore(id);
+        return storage;
+    }
+
     public Storage getStorage(long id) {
         var storage = storageRepository.findById(id);
         return storage;
@@ -33,15 +38,20 @@ public class StorageService {
 
     public Double countKeepCost(Storage storage) {
         var costPerDay = storage.getCostPerDay();
-        var days = countKeepDays(storage);
+        var days = countKeepDays(storage) + 1L;
         var total = costPerDay * days;
         return total;
     }
 
     public long countKeepDays(Storage storage) {
+        long diff;
         var startDate = storage.getArrivalDate();
         var endDate = storage.getDeliveryDate();
-        var diff = ChronoUnit.DAYS.between(startDate, endDate);
+
+        diff = ChronoUnit.DAYS.between(
+            startDate,
+            Objects.requireNonNullElseGet(endDate, LocalDate::now));
+
         return diff;
     }
 

@@ -1,5 +1,7 @@
 package com.example.malladminsystem.service;
 
+import java.time.*;
+import java.time.temporal.*;
 import java.util.*;
 
 import com.example.malladminsystem.model.*;
@@ -12,6 +14,10 @@ import org.springframework.stereotype.*;
 public class InvoiceService {
 
     private final InvoiceRepository invoiceRepository;
+
+    public void addNewInvoice(Invoice invoice) {
+        invoiceRepository.save(invoice);
+    }
 
     public List<Invoice> getAllInvoices() {
         var invoices = invoiceRepository.findAll();
@@ -27,6 +33,30 @@ public class InvoiceService {
         var invoice = invoiceRepository.findByIdInvoice(id);
         invoice.setPaid(true);
         invoiceRepository.save(invoice);
+    }
+
+    public Double countTotalRentCost(Invoice invoice) {
+        var tax = invoice.getTax();
+        var fee = invoice.getFee();
+        var monthsToPay = countMonths(invoice);
+        var costPerMonth = invoice.getContract()
+            .getStore()
+            .getMonthlyCost();
+
+        var totalCost = costPerMonth * monthsToPay;
+        if (tax != 0) {
+            totalCost = totalCost * ((100 + Math.abs(tax)) / 100D);
+        }
+        totalCost = totalCost + fee;
+        return totalCost;
+    }
+
+    public long countMonths(Invoice invoice) {
+        var startDate = LocalDate.now();
+        var endDate = invoice.getDueDate();
+
+        var diff = ChronoUnit.MONTHS.between(startDate, endDate);
+        return diff;
     }
 
 }

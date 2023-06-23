@@ -12,4 +12,5 @@ public interface StorageRepository extends CrudRepository<Storage, Long> {
     Storage findById(long id);
 
     List<Storage> findAll();
+    List<Storage> findAllByStoreIdStore(long id);
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface ContractRepository extends CrudRepository<Contract, Long> {
 
     List<Contract> findAll();
+    List<Contract> findAllByIsActiveIsTrue();
     List<Contract> findAllByTenant(Tenant tenant);
     Contract findById(long id);
     Contract findByStore_IdStore(long id);
