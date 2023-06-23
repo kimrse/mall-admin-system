@@ -32,4 +32,9 @@ public class StoreService {
         var store = storeRepository.findById(id);
         return store;
     }
+
+//    public Set<Store> getPromoStores(Promo promo, long storeId) {
+//        storeRepository.
+//    }
+
 }

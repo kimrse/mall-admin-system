@@ -31,7 +31,9 @@ public class InvoiceService {
 
     public void setPaidStatus(Long id) {
         var invoice = invoiceRepository.findByIdInvoice(id);
-        invoice.setPaid(true);
+        var status = invoice.isPaid();
+
+        invoice.setPaid(!status);
         invoiceRepository.save(invoice);
     }
 
@@ -47,8 +49,10 @@ public class InvoiceService {
         if (tax != 0) {
             totalCost = totalCost * ((100 + Math.abs(tax)) / 100D);
         }
-        totalCost = totalCost + fee;
-        return totalCost;
+        if (fee != null) {
+            totalCost = totalCost + fee;
+        }
+        return (double) Math.round(totalCost);
     }
 
     public long countMonths(Invoice invoice) {

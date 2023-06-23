@@ -2,23 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" th:href="@{../css/style.css}"/>
+  <title>Акции</title>
+  <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
 </head>
-<header>
-  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
-  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
-  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
-  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
-  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
-  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
-  <a class="head btn-hd" th:href="@{/storage}">Поставки</a>
-  <a class="head btn-hd btn-selected" th:href="@{/promos}">Акции</a>
-</header>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/promos}">Акции</a>
+</nav>
 <body>
-  <a th:href="@{/promos/new}">Добавить акцию</a>
-  <div class="movie">
-
-  </div>
+<div class="container pt-3 my-5">
+  <h3 class="text-center p-3">Перечень акций</h3>
+  <span class="container p-2">
+        <a class="btn btn-success w-auto .hover-shadow" th:href="@{/promos/new}">Добавить акцию</a>
+    </span>
+  <hr/>
+  <table class="table table-bordered" id="contractTable">
+    <thead>
+    <tr>
+      <th>Номер</th>
+      <th>Тип акции</th>
+      <th>Магазины</th>
+      <th>Бюджет</th>
+      <th>Дата начала</th>
+      <th>Дата завершения</th>
+      <th>Статус</th>
+      <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="promo: ${promos}">
+      <td th:text="${promo.idPromo}"></td>
+      <td th:text="${promo.promoType}"></td>
+      <td th:text="${promo.stores}"></td>
+      <td th:text="${promo.budget}"></td>
+      <td th:text="${promo.startDate}"></td>
+      <td th:text="${promo.endDate}"></td>
+      <td th:text="${promo.active}"></td>
+      <td>
+        <a class="btn btn-info w-auto" th:href="@{/promos/(id=${promo.idPromo})}">Подробнее</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#contractTable").DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1] /* 1st one, start by the right */
+            }],
+            "oLanguage": {
+                "sLengthMenu": "Показать _MENU_ записей",
+                "sInfo": "Показано _END_ из _TOTAL_ записей",
+                "sSearch": "Поиск:",
+                "oPaginate": {
+                    "sNext": "Далее",
+                    "sPrevious": "Назад"
+                },
+                "sInfoEmpty": "Нет записей",
+                "sEmptyTable": "Нет записей",
+                "sZeroRecords": "Нет записей",}
+        });
+    })
+</script>
 </body>
 </html>

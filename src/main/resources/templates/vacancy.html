@@ -27,6 +27,7 @@
   <span class="container p-4 m-4">
     <a th:href="@{/stores/(id=${vacancy.store.idStore})}" class="btn btn-primary">Перейти к магазину</a>
     <a th:href="@{/vacancies/edit(id=${vacancy.idVacancy})}" class="btn btn-success">Редактировать вакансию</a>
+    <a th:href="@{/vacancies/update(id=${vacancy.idVacancy})}" class="btn btn-warning">Обновить статус</a>
   </span>
   <hr/>
   <div th:object="${vacancy}" class="container">

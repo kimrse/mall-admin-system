@@ -49,10 +49,12 @@ public class StorageController {
         return "redirect:/storage";
     }
 
-    @GetMapping("/deliver/")
+    @GetMapping("/update")
     public String deliverStorage(@RequestParam Long id) {
         storageService.deliverStorage(id);
-        return "redirect:/storage";
+
+        var url = String.format("redirect:/storage/?id=%s", id);
+        return url;
     }
 
 }

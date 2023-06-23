@@ -27,23 +27,25 @@
   <span class="container p-4 m-4">
     <a th:href="@{/stores/(id=${storage.store.idStore})}" class="btn btn-primary">Перейти к магазину</a>
     <a th:href="@{/storage/edit(id=${storage.idStorage})}" class="btn btn-success">Редактировать поставку</a>
-    <a th:href="@{/storage/deliver/(id=${storage.idStorage})}" class="btn btn-warning">Доставить в магазин</a>
+    <a th:href="@{/storage/update(id=${storage.idStorage})}" class="btn btn-warning">Обновить статус доставки в магазин</a>
   </span>
   <hr/>
   <div th:object="${storage}" class="container">
-    <div class="shadow container p-4 m-4">
-      <h5>Номер поставки: </h5><span th:text="*{idStorage}"></span>
-      <h5>Наименование поставки: </h5><span th:text="*{productName}"></span>
-      <h5>Магазин: </h5><span th:text="*{store.storeTitle}"></span>
-      <h5>Поставщик: </h5><span th:text="*{supplier}"></span>
-      <h5>Страна производитель: </h5><span th:text="*{manufacturerCountry}"></span>
-      <h5>Количество товара: </h5><span th:text="*{amount}"></span>
-      <h5>Дата прибытия на склад: </h5><span th:text="*{arrivalDate}"></span>
-<!--      <h5>Дней на складе: </h5><span th:text="*{}"></span>-->
-      <h5>Цена за день хранения: </h5><span th:text="*{costPerDay}"></span>
-<!--      <h5>Общая стоимость: </h5><span th:text="*{}"></span>-->
-      <h5>Статус доставки в магазин: </h5><span th:text="*{isDelivered()}"></span>
-      <h5>Дата доставки в магазин: </h5><span th:text="*{deliveryDate}"></span>
+    <div class="shadow container d-flex justify-content-around p-4 m-4">
+      <div class="container">
+        <h5>Номер поставки: </h5><span th:text="*{idStorage}"></span>
+        <h5>Наименование поставки: </h5><span th:text="*{productName}"></span>
+        <h5>Магазин: </h5><span th:text="*{store.storeTitle}"></span>
+        <h5>Поставщик: </h5><span th:text="*{supplier}"></span>
+        <h5>Страна производитель: </h5><span th:text="*{manufacturerCountry}"></span>
+      </div>
+      <div class="container">
+        <h5>Количество товара: </h5><span th:text="*{amount}"></span>
+        <h5>Дата прибытия на склад: </h5><span th:text="*{arrivalDate}"></span>
+        <h5>Цена за день хранения: </h5><span th:text="*{costPerDay}"></span>
+        <h5>Статус доставки в магазин: </h5><span th:text="*{isDelivered()}"></span>
+        <h5>Дата доставки в магазин: </h5><span th:text="*{deliveryDate}"></span>
+      </div>
     </div>
   </div>
 </div>

@@ -58,9 +58,15 @@ public class StorageService {
     public void deliverStorage(long id) {
         var storage = storageRepository.findById(id);
         var curdate = LocalDate.now();
+        var status = storage.isDelivered();
 
-        storage.setDeliveryDate(curdate);
-        storage.setDelivered(true);
+        if (status) {
+            storage.setDeliveryDate(null);
+            storage.setDelivered(false);
+        } else {
+            storage.setDeliveryDate(curdate);
+            storage.setDelivered(true);
+        }
         storageRepository.save(storage);
     }
 

@@ -23,4 +23,15 @@ public class VacancyService {
         return vacancy;
     }
 
+    public void addNewVacancy(Vacancy vacancy) {
+        vacancyRepository.save(vacancy);
+    }
+
+    public void updateStatus(long id) {
+        var vacancy = vacancyRepository.findById(id);
+        var status = vacancy.isActive();
+
+        vacancy.setActive(!status);
+        vacancyRepository.save(vacancy);
+    }
 }

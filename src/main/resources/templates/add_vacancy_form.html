@@ -23,23 +23,26 @@
 </nav>
 <body>
 <div class="container pt-3 my-5">
-  <h3 class="text-center p-3">Добавить новый документ учета</h3>
+  <h3 class="text-center p-3">Добавить новую вакансию</h3>
   <hr/>
-  <form th:action="@{/invoices}" th:object="${invoice}" method="POST">
-    <div class="d-flex align-items-center flex-column">
+  <form th:action="@{/vacancies}" th:object="${vacancy}" method="POST">
+    <div class="d-flex flex-column">
       <div class="form-group">
-        <select class="form-control" data-role="select-dropdown" data-profile="minimal" th:field="*{contract}">
-          <option class="dropdown-item" value="0">Выберите договор</option>
-          <option class="dropdown-item" th:each="contract : ${contracts}" th:value="${contract.idContract}"
-                  th:text="${'Номер: '+contract.idContract+' , ФИО: '+contract.tenant.firstName+' '+contract.tenant.lastName+' '+contract.tenant.middleName+' , Магазин: '+contract.store.storeTitle}">
+        <select class="form-control" data-role="select-dropdown" data-profile="minimal" th:field="*{store}">
+          <option class="dropdown-item" value="0">Выберите магазин</option>
+          <option class="dropdown-item" th:each="store : ${stores}" th:value="${store.idStore}"
+                  th:text="${'Павильон: '+store.idStore+' , Название: '+store.storeTitle}">
           </option>
         </select>
       </div>
-      <input type="text" th:field="*{fee}" class="form-control col-4 mb-4" placeholder="Введите сумму штрафа (если есть)" />
-      <input type="text" th:field="*{tax}" class="form-control col-4 mb-4" placeholder="Введите налог %" />
-      <label for="dueDate">Оплатить до:</label>
-      <input id="dueDate" type="date" th:field="*{dueDate}" class="form-control col-4 mb-4" placeholder="Введите срок оплаты" />
-      <button type="submit" class="btn btn-primary w-auto">Добавить</button>
+      <input type="text" th:field="*{vacancyTitle}" class="form-control col-4 mb-4" placeholder="Введите наименование вакансии" />
+      <input type="text" th:field="*{salary}" class="form-control col-4 mb-4" placeholder="Введите уровень заработой платы" />
+      <div class="form-outline mb-4">
+        <textarea class="form-control" id="textAreaExample" rows="10"
+                  th:field="*{vacancyDescription}" placeholder="Введите описание вакансии">
+        </textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Добавить</button>
     </div>
   </form>
 </div>

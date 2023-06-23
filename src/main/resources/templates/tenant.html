@@ -23,10 +23,14 @@
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
 </nav>
 <body>
-<div class="container pt-4 my-5">
-  <div th:object="${tenant}">
-    <div>
-      <h3 class="text-center p-3">Информация об арендаторе:</h3>
+<div class="shadow container pt-4 my-5">
+  <h3 class="text-center p-3">Информация об арендаторе:</h3>
+  <span class="container p-4 m-4">
+      <a th:href="@{/contracts}" class="btn btn-primary">Перейти к договорам</a>
+  </span>
+  <hr/>
+  <div th:object="${tenant}" class="container">
+    <div class="container p-4 m-4">
       <h5>Номер арендатора: </h5><span th:text="*{idTenant}"></span>
       <h5>ФИО: </h5><span th:text="*{firstName+' '+lastName+' '+middleName}"></span>
       <h5>Почта: </h5><span th:text="*{email}"></span>
@@ -35,17 +39,17 @@
       <h5>Статус: </h5><span th:text="*{isDebtor()}"></span>
     </div>
   </div>
-  <div class="container pt-1 my-1">
+  <div class="container p-2 my-2">
     <h4 class="text-center p-3">Договоры арендатора</h4>
     <table class="table" id="contractTable">
       <thead>
-        <tr>
-          <th>Номер договора</th>
-          <th>Название магазина</th>
-          <th>Дата подписания</th>
-          <th>Дата окончания действия</th>
-          <th>Действия</th>
-        </tr>
+      <tr>
+        <th>Номер договора</th>
+        <th>Название магазина</th>
+        <th>Дата подписания</th>
+        <th>Дата окончания действия</th>
+        <th>Действия</th>
+      </tr>
       </thead>
       <tbody>
       <tr th:each="contract: ${contracts}">

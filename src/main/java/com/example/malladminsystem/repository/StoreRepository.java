@@ -10,7 +10,13 @@ import org.springframework.stereotype.Repository;
 public interface StoreRepository extends CrudRepository<Store, Long> {
 
     List<Store> findAllByIsOccupiedIsFalse();
+
     List<Store> findAllByIsOccupiedIsTrue();
+
     List<Store> findAll();
+
+//    List<Store> findAllByLinkedPromos(Set<Promo> promo);
+
     Store findById(long id);
+
 }

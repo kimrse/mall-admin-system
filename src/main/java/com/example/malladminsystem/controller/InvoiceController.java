@@ -39,6 +39,11 @@ public class InvoiceController {
             .collect(Collectors.summarizingDouble(storageService::countKeepCost))
             .getSum();
 
+        var totalRentCost = invoiceService.countTotalRentCost(invoice);
+        var totalCost = Double.sum(totalRentCost, totalStorageCost);
+
+        invoice.setTotalCost(totalCost);
+
         model.addAttribute("storageCost", totalStorageCost);
         model.addAttribute("invoice", invoice);
         return "invoice";
@@ -47,7 +52,9 @@ public class InvoiceController {
     @GetMapping("paid")
     public String updatePaidStatus(@RequestParam Long id) {
         invoiceService.setPaidStatus(id);
-        return "redirect:/invoices";
+
+        var url = String.format("redirect:/invoices/?id=%s", id);
+        return url;
     }
 
     @GetMapping("/new")
