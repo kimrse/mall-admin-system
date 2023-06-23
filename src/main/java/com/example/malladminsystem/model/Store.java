@@ -15,7 +15,13 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idStore;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "stores", fetch = FetchType.EAGER)
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "store_promo",
+        joinColumns = @JoinColumn(name = "id_store"),
+        inverseJoinColumns = @JoinColumn(name = "id_promo")
+    )
     private Set<Promo> promos;
 
     private String storeTitle;

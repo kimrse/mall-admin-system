@@ -52,6 +52,11 @@
           <input id="endDate" type="date" th:field="*{endDate}" class="form-control"/>
         </div>
       </div>
+      <div class="container form-outline mb-4">
+        <textarea class="form-control" id="textAreaExample" rows="10"
+                  th:field="*{promoDescription}" placeholder="Введите описание акции">
+        </textarea>
+      </div>
       <button type="submit" class="btn btn-primary w-auto">Добавить</button>
     </div>
   </form>

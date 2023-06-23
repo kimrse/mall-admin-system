@@ -27,10 +27,8 @@ public class PromoController {
     @GetMapping("/")
     public String getPromo(@RequestParam Long id, Model model) {
         var promo = promoService.getPromoById(id);
-//        var stores = storeService.get;
 
         model.addAttribute("promo", promo);
-//        model.addAttribute("contracts", stores);
         return "promo";
     }
 
@@ -45,7 +43,7 @@ public class PromoController {
     }
 
     @PostMapping
-    public String addPromo(@ModelAttribute("tenant") Promo promo) {
+    public String addPromo(@ModelAttribute("tenant") Promo promo, Model model) {
         promoService.addNewPromo(promo);
         var promoId = promo.getIdPromo();
 

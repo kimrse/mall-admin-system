@@ -14,6 +14,15 @@ public class PromoService {
     private final PromoRepository promoRepository;
 
     public void addNewPromo(Promo promo) {
+        var stores = promo.getStores();
+//        Set<Long> storeIds = new HashSet<>() ;
+//
+//        stores.forEach(i->{
+//            storeIds.add(i.getIdStore());
+//        });
+//        promo
+//        promo.setStores(stores);
+
         promoRepository.save(promo);
     }
 
