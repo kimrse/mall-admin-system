@@ -3,35 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Учет</title>
-  <link rel="stylesheet" th:href="@{../css/style.css}"/>
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
 </head>
-<header>
-  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
-  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
-  <a class="head btn-hd btn-selected" th:href="@{/invoices}">Учет</a>
-  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
-  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
-  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
-  <a class="head btn-hd" th:href="@{/storage}">Поставки</a>
-  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
-</header>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Магазины</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+</nav>
 <body>
-<div class="movie">
-  <div th:object="${invoice}" class="movie-info-box">
-    <div class="movie-info">
-      <h4>Информация о договоре:</h4>
-      <h5>Номер договора: </h5><span th:text="*{contract.idContract}"></span>
-      <h5>ФИО: </h5><span th:text="*{contract.tenant.firstName+' '+contract.tenant.lastName+' '+contract.tenant.middleName}"></span>
-      <h5>Название магазина: </h5><span th:text="*{contract.store.storeTitle}"></span>
-      <h5>Стоимость аренды в месяц: </h5><span th:text="*{contract.store.monthlyCost}"></span>
-      <h5>Налог: </h5><span th:text="*{tax}"></span>
-      <h5>Штраф: </h5><span th:text="*{fee}"></span>
-      <h5>Общая стоимость: </h5><span th:text="*{totalCost}"></span>
-      <h5>Статус оплаты: </h5><span th:text="*{isPaid()}"></span>
+  <div class="container pt-4 my-5">
+    <h3 class="text-center p-3">Информация о документе учета:</h3>
+    <span class="container p-4 m-4">
+      <a th:href="@{/invoices/paid(id=${invoice.idInvoice})}" class="btn btn-warning">Установить оплаченым</a>
+    </span>
+    <hr/>
+    <div th:object="${invoice}" class="container">
+      <div class="shadow container p-4 m-4">
+        <h5>Номер договора: </h5><span th:text="*{contract.idContract}"></span>
+        <h5>ФИО: </h5><span th:text="*{contract.tenant.firstName+' '+contract.tenant.lastName+' '+contract.tenant.middleName}"></span>
+        <h5>Название магазина: </h5><span th:text="*{contract.store.storeTitle}"></span>
+        <h5>Стоимость аренды в месяц: </h5><span th:text="*{contract.store.monthlyCost}"></span>
+        <h5>Налог: </h5><span th:text="*{tax}"></span>
+        <h5>Штраф: </h5><span th:text="*{fee}"></span>
+        <h5>Общая стоимость: </h5><span th:text="*{totalCost}"></span>
+        <h5>Статус оплаты: </h5><span th:text="*{isPaid()}"></span>
+      </div>
     </div>
-      <a th:href="@{/invoices/paid(id=${invoice.idInvoice})}" class="btn btn-info">Установить оплаченым</a>
-  </div>
-  <div class="movie-desc">
   </div>
 </div>
 </body>

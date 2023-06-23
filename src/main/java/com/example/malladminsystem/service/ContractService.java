@@ -29,6 +29,11 @@ public class ContractService {
         return contract;
     }
 
+    public Contract getContractByStore(long id) {
+        var contract = contractRepository.findByStore_IdStore(id);
+        return contract;
+    }
+
     public void addNewContract(Contract contract) {
         var store = contract.getStore();
         var curDate = LocalDate.now();

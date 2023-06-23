@@ -29,7 +29,7 @@
     <a class="btn btn-success w-auto .hover-shadow" th:href="@{/storage/new}">Добавить поставку</a>
   </span>
   <hr/>
-    <table class="table table-bordered table-striped" id="storageTable">
+    <table class="table table-bordered" id="storageTable">
       <thead>
       <tr>
         <th>Номер поставки</th>
@@ -47,7 +47,11 @@
       <tr th:each="item: ${storage}">
         <td th:text="${item.idStorage}"></td>
         <td th:text="${item.productName}"></td>
-        <td th:text="${item.store.storeTitle}"></td>
+        <td>
+          <a th:href="@{/stores/(id=${item.store.idStore})}"
+             th:text="${item.store.storeTitle}">
+          </a>
+        </td>
         <td th:text="${item.supplier}"></td>
         <td th:text="${item.manufacturerCountry}"></td>
         <td th:text="${item.amount}"></td>

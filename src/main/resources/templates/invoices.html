@@ -23,7 +23,7 @@
 </nav>
 <body>
 <div class="container pt-3 my-5">
-  <h3 class="text-center p-3">Перечень учета договоров</h3>
+  <h3 class="text-center p-3">Перечень учета оплаты договоров</h3>
   <span class="container p-2">
     <a class="btn btn-success w-auto .hover-shadow" th:href="@{/invoices/new}">Добавить документ учета</a>
   </span>
@@ -57,6 +57,8 @@
       </tbody>
     </table>
   </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
   <script>
       $(document).ready(function() {
           $("#invoiceTable").DataTable({

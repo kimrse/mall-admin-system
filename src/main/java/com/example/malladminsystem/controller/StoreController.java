@@ -23,7 +23,11 @@ public class StoreController {
     @GetMapping("/")
     public String getStore(@RequestParam Long id, Model model) {
         var store = storeService.getStoreById(id);
+        var contract = contractService
+            .getContractByStore(store.getIdStore());
+
         model.addAttribute("store", store);
+        model.addAttribute("contract", contract);
         return "store";
     }
 

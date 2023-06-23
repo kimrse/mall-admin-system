@@ -26,7 +26,7 @@
 <div class="container pt-4 my-5">
   <div th:object="${tenant}">
     <div>
-      <h4 class="text-center p-3">Информация об арендаторе:</h4>
+      <h3 class="text-center p-3">Информация об арендаторе:</h3>
       <h5>Номер арендатора: </h5><span th:text="*{idTenant}"></span>
       <h5>ФИО: </h5><span th:text="*{firstName+' '+lastName+' '+middleName}"></span>
       <h5>Почта: </h5><span th:text="*{email}"></span>
@@ -36,7 +36,7 @@
     </div>
   </div>
   <div class="container pt-1 my-1">
-    <h3 class="text-center p-3">Договоры арендатора</h3>
+    <h4 class="text-center p-3">Договоры арендатора</h4>
     <table class="table" id="contractTable">
       <thead>
         <tr>

@@ -3,23 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Павильон</title>
-  <link rel="stylesheet" th:href="@{../css/style.css}"/>
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
 </head>
-<header>
-  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
-  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
-  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
-  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
-  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
-  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
-  <a class="head btn-hd" th:href="@{/storage}">Поставки</a>
-  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
-</header>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+</nav>
 <body>
-<div class="movie">
-  <div th:object="${store}" class="movie-info-box">
-    <div class="movie-info">
-      <h4>Информация о павильоне:</h4>
+<div class="container pt-4 my-5">
+  <h3 class="text-center p-3">Информация о павильоне:</h3>
+  <span class="container p-4 m-4">
+      <a th:href="@{/contracts/(id=${contract.idContract})}" class="btn btn-primary">Перейти к договору</a>
+  </span>
+  <hr/>
+  <div th:object="${store}" class="container">
+    <div class="shadow container p-4 m-4">
       <h5>Номер павильона: </h5><span th:text="*{idStore}"></span>
       <h5>Размер кв.м: </h5><span th:text="*{squareArea}"></span>
       <h5>Этаж: </h5><span th:text="*{floor}"></span>

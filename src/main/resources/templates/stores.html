@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Магазины</title>
-  <link rel="stylesheet" th:href="@{../css/style.css}"/>
+  <title>Павильон</title>
+<!--  <link rel="stylesheet" th:href="@{../css/style.css}"/>-->
   <link rel="stylesheet"
         type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
@@ -16,7 +16,7 @@
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/stores}">Магазины</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/stores}">Павильоны</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
@@ -37,7 +37,7 @@
       <th>Размер магазина кв.м</th>
       <th>Этаж</th>
       <th>Стоимость аренды</th>
-      <th>Статус магазина</th>
+      <th>Сдан</th>
       <th>Действия</th>
     </tr>
     </thead>

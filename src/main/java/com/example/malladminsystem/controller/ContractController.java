@@ -30,6 +30,13 @@ public class ContractController {
         return "contract";
     }
 
+    @GetMapping("/store/")
+    public String getContractByStoreId(Model model, @RequestParam Long id) {
+        var contract = contractService.getContractByStore(id);
+        model.addAttribute("contract", contract);
+        return "contract";
+    }
+
     @GetMapping("/new")
     public String addContractForm(Model model) {
         var contract = new Contract();

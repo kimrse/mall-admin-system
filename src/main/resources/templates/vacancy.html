@@ -3,35 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <title>Вакансии</title>
-  <link rel="stylesheet" th:href="@{../css/style.css}"/>
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
 </head>
-<header>
-  <a class="head btn-hd" th:href="@{/tenants}">Арендаторы</a>
-  <a class="head btn-hd" th:href="@{/contracts}">Договоры</a>
-  <a class="head btn-hd" th:href="@{/invoices}">Учет</a>
-  <a class="head btn-hd" th:href="@{/stores}">Магазины</a>
-  <a class="head btn-hd" th:href="@{/employees}">Сотрудники</a>
-  <a class="head btn-hd" th:href="@{/vacancies}">Вакансии</a>
-  <a class="head btn-hd" th:href="@{/storage}">Поставки</a>
-  <a class="head btn-hd" th:href="@{/promos}">Акции</a>
-</header>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+</nav>
 <body>
-<div class="movie">
-  <div th:object="${vacancy}" class="movie-info-box">
-    <div class="movie-info">
-      <h4>Информация о вакансии:</h4>
+<div class="container pt-4 my-5">
+  <h3 class="text-center p-3">Информация о вакансии:</h3>
+  <span class="container p-4 m-4">
+    <a th:href="@{/stores/(id=${vacancy.store.idStore})}" class="btn btn-primary">Перейти к магазину</a>
+    <a th:href="@{/vacancies/edit(id=${vacancy.idVacancy})}" class="btn btn-success">Редактировать вакансию</a>
+  </span>
+  <hr/>
+  <div th:object="${vacancy}" class="container">
+    <div class="shadow container p-4 m-4">
       <h5>Наименование: </h5><span th:text="*{vacancyTitle}"></span>
-      <h5>Магазин: </h5>
-        <a th:href="@{/stores/(id=${vacancy.store.idStore})}">
-        <span th:text="*{store.storeTitle}"></span>
-        </a>
+      <h5>Магазин: </h5><span th:text="*{store.storeTitle}"></span>
       <h5>Зарплата: </h5><span th:text="*{salary}"></span>
       <h5>Статус вакансии: </h5><span th:text="*{isActive()}"></span>
       <h5>Описание вакансии: </h5><span th:text="*{vacancyDescription}"></span>
     </div>
-    <a th:href="@{/vacancies/edit(id=${vacancy.idVacancy})}" class="btn btn-info">Редактировать вакансию</a>
-  </div>
-  <div class="movie-desc">
   </div>
 </div>
 </body>
