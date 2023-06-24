@@ -42,8 +42,8 @@
     <tr th:each="employee: ${employees}">
       <td th:text="${employee.firstName+' '+employee.lastName+' '+employee.middleName}"></td>
       <td>
-        <a th:href="@{/stores/(id=${employee.store.idStore})}"
-           th:text="${employee.store.storeTitle}">
+        <a th:href="@{/stores/(id=${employee.vacancy.store.idStore})}"
+           th:text="${employee.vacancy.store.storeTitle}">
         </a>
       </td>
       <td th:text="${employee.jobTitle}"></td>

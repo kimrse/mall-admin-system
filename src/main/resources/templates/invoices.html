@@ -37,7 +37,7 @@
         <th>ФИО Плательщика</th>
         <th>Общая сумма</th>
         <th>Крайний срок оплаты</th>
-        <th>Статус оплаты</th>
+        <th>Оплачено</th>
         <th>Действия</th>
       </tr>
       </thead>
@@ -49,7 +49,10 @@
         <td th:text="${invoice.contract.tenant.firstName+' '+invoice.contract.tenant.lastName+' '+invoice.contract.tenant.middleName}"></td>
         <td th:text="${invoice.totalCost}"></td>
         <td th:text="${invoice.dueDate}"></td>
-        <td th:text="${invoice.isPaid()}"></td>
+        <td>
+          <span th:if="${invoice.paid == true}">Да</span>
+          <span th:unless="${invoice.paid == true}">Нет</span>
+        </td>
         <td>
           <a class="btn btn-info w-auto" th:href="@{/invoices/(id=${invoice.idInvoice})}">Подробнее</a>
         </td>

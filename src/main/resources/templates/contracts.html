@@ -46,10 +46,17 @@
             <td th:text="${contract.idContract}"></td>
             <td th:text="${contract.tenant.firstName+' '+contract.tenant.lastName+' '+contract.tenant.middleName}"></td>
             <td th:text="${contract.store.idStore}"></td>
-            <td th:text="${contract.store.storeTitle}"></td>
+            <td>
+              <a th:href="@{/stores/(id=${contract.store.idStore})}"
+                 th:text="${contract.store.storeTitle}">
+              </a>
+            </td>
             <td th:text="${contract.signedDate}"></td>
             <td th:text="${contract.endDate}"></td>
-            <td th:text="${contract.isOverdue()}"></td>
+            <td>
+              <span th:if="${contract.overdue == true}">Да</span>
+              <span th:unless="${contract.overdue == true}">Нет</span>
+            </td>
             <td>
               <a class="btn btn-info w-auto" th:href="@{/contracts/(id=${contract.idContract})}">Подробнее</a>
             </td>

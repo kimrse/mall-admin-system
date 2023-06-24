@@ -26,17 +26,30 @@
 <div class="shadow container pt-4 my-5">
   <h3 class="text-center p-3">Информация об арендаторе:</h3>
   <span class="container p-4 m-4">
-      <a th:href="@{/contracts}" class="btn btn-primary">Перейти к договорам</a>
+    <a th:href="@{/contracts}" class="btn btn-primary">Редактировать</a>
+    <a th:href="@{${'/tenants/upload/?id='+tenant.idTenant}}" class="btn btn-info">Изменить фото</a>
+    <a th:href="@{/contracts}" class="btn btn-warning">Обновить статус</a>
   </span>
   <hr/>
   <div th:object="${tenant}" class="container">
-    <div class="container p-4 m-4">
-      <h5>Номер арендатора: </h5><span th:text="*{idTenant}"></span>
-      <h5>ФИО: </h5><span th:text="*{firstName+' '+lastName+' '+middleName}"></span>
-      <h5>Почта: </h5><span th:text="*{email}"></span>
-      <h5>Адрес: </h5><span th:text="*{address}"></span>
-      <h5>Номер телефона: </h5><span th:text="*{phone}"></span>
-      <h5>Статус: </h5><span th:text="*{isDebtor()}"></span>
+    <div class="container d-flex p-4 m-4">
+      <div class="container flex-column">
+        <div><h5 class="py-2 m-auto">ФИО: </h5 ><span class="m-auto" th:text="*{lastName+' '+firstName+' '+middleName}"></span></div>
+        <div><h5 class="py-2 m-auto">Номер арендатора: </h5><span class="m-auto" th:text="*{idTenant}"></span></div>
+        <div><h5 class="py-2 m-auto">Почта: </h5><span class="m-auto" th:text="*{email}"></span></div>
+        <div ><h5 class="py-2 m-auto">Адрес: </h5><span class="m-auto" th:text="*{address}"></span></div>
+      </div>
+      <div class="container">
+        <h5 class="py-2 m-auto">Номер телефона: </h5><span th:text="*{phone}"></span>
+        <h5 class="py-2 m-auto">Номер паспорта: </h5><span th:text="*{passNum}"></span>
+        <h5 class="py-2 m-auto">ИНН: </h5><span th:text="*{innNum}"></span>
+        <h5 class="py-2 m-auto">Статус: </h5>
+        <span th:if="${tenant.debtor == true}">Должник</span>
+        <span th:unless="${tenant.debtor == true}">Ок</span>
+      </div>
+      <div class="container">
+        <img th:src="${tenant.photo}" alt="Error"/>
+      </div>
     </div>
   </div>
   <div class="container p-2 my-2">

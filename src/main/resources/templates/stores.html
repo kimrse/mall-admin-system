@@ -33,7 +33,7 @@
     <thead>
     <tr>
       <th>Павильон</th>
-      <th>Название</th>
+      <th>Название магазина</th>
       <th>Размер магазина кв.м</th>
       <th>Этаж</th>
       <th>Стоимость аренды</th>
@@ -44,11 +44,17 @@
     <tbody>
     <tr th:each="store: ${stores}">
       <td th:text="${store.idStore}"></td>
-      <td th:text="${store.storeTitle}"></td>
+      <td>
+        <span th:if="${store.storeTitle == null}">Нет</span>
+        <span th:unless="${store.storeTitle == null}" th:text="${store.storeTitle}"></span>
+      </td>
       <td th:text="${store.squareArea}"></td>
       <td th:text="${store.floor}"></td>
       <td th:text="${store.monthlyCost}"></td>
-      <td th:text="${store.occupied}"></td>
+      <td>
+        <span th:if="${store.occupied == true}">Да</span>
+        <span th:unless="${store.occupied == true}">Нет</span>
+      </td>
       <td>
         <a class="btn btn-info w-auto" th:href="@{/stores/(id=${store.idStore})}">Подробнее</a>
       </td>

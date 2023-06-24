@@ -39,10 +39,7 @@ public class InvoiceController {
             .collect(Collectors.summarizingDouble(storageService::countKeepCost))
             .getSum();
 
-        var totalRentCost = invoiceService.countTotalRentCost(invoice);
-        var totalCost = Double.sum(totalRentCost, totalStorageCost);
-
-        invoice.setTotalCost(totalCost);
+        invoiceService.updateTotalCost(invoice, totalStorageCost);
 
         model.addAttribute("storageCost", totalStorageCost);
         model.addAttribute("invoice", invoice);

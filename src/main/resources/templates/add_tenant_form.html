@@ -30,6 +30,8 @@
           <input type="text" th:field="*{firstName}" class="form-control col-4 mb-4 f" placeholder="Введите имя" />
           <input type="text" th:field="*{lastName}" class="form-control col-4 mb-4" placeholder="Введите фамилию" />
           <input type="text" th:field="*{middleName}" class="form-control col-4 mb-4" placeholder="Введите отчество" />
+          <input type="text" th:field="*{passNum}" class="form-control col-4 mb-4" placeholder="Введите серию и номер паспорта" />
+          <input type="text" th:field="*{innNum}" class="form-control col-4 mb-4" placeholder="Введите ИНН" />
           <input type="text" th:field="*{email}" class="form-control col-4 mb-4" placeholder="Введите почту" />
           <input type="text" th:field="*{address}" class="form-control col-4 mb-4" placeholder="Введите адрес" />
           <input type="text" th:field="*{phone}" class="form-control col-4 mb-4" placeholder="Введите номер телефона" />
@@ -38,7 +40,7 @@
         </div>
       </form>
     <hr/>
-    <a th:href="@{/list}">Back to list</a>
+    <a class="btn" th:href="@{/tenants}">Назад</a>
   </div>
 </body>
 </html>

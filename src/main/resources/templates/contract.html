@@ -28,6 +28,7 @@
     <span class="container p-4 m-4">
       <a th:href="@{/tenants/(id=${contract.tenant.idTenant})}" class="btn btn-primary">Перейти к арендатору</a>
       <a th:href="@{/stores/(id=${contract.store.idStore})}" class="btn btn-info">Перейти к магазину</a>
+      <a th:href="@{/stores/(id=${contract.store.idStore})}" class="btn btn-danger">Деактивировать</a>
     </span>
     <hr/>
     <div class="container d-inline-flex" th:object="${contract}">
@@ -37,6 +38,10 @@
         <h5>Номер Телефона: </h5><span th:text="*{tenant.phone}"></span>
         <h5>Дата подписания: </h5><span th:text="*{signedDate}"></span>
         <h5>Дата окончания действия договора: </h5><span th:text="*{endDate}"></span>
+        <h5>Статусы договора: </h5>
+        <span th:if="${contract.active == true}">Активен</span>
+        <span th:unless="${contract.active == true}">Прекращен</span>
+        <span th:if="${contract.overdue == true}">Оплата по договору просрочена</span>
         <h5>Детальная информация: </h5><span th:text="*{details}"></span>
       </div>
       <div class="shadow container p-4 m-4">

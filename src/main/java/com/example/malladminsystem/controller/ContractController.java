@@ -40,11 +40,11 @@ public class ContractController {
     @GetMapping("/new")
     public String addContractForm(Model model) {
         var contract = new Contract();
-        var emptyStores = storeService.getEmptyStores();
+        var stores = storeService.getAllStores();
         var tenants = tenantService.getAllTenants();
 
         model.addAttribute("contract", contract);
-        model.addAttribute("emptyStores" , emptyStores);
+        model.addAttribute("emptyStores" , stores);
         model.addAttribute("tenants", tenants);
         return "add_contract_form";
     }

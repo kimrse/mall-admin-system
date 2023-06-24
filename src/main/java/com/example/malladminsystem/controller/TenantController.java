@@ -1,11 +1,14 @@
 package com.example.malladminsystem.controller;
 
+import java.io.*;
+
 import com.example.malladminsystem.model.*;
 import com.example.malladminsystem.service.*;
 import lombok.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -45,4 +48,22 @@ public class TenantController {
         tenantService.addNewTenant(tenant);
         return "redirect:/tenants";
     }
+
+//    @GetMapping("/upload/")
+//    public String imageUploadForm(@RequestParam Long id, Model model) {
+//        var tenant = tenantService.getTenantById(id);
+//        model.addAttribute("tenant", tenant);
+//        return "upload_tenant_photo";
+//    }
+
+//    @PostMapping("/upload")
+//    public String uploadImage(
+//        @ModelAttribute("tenant") Tenant tenant, @RequestParam("image") MultipartFile file
+//    ) throws IOException {
+//        tenantService.saveImage(tenant, file);
+//
+//        var url = String.format("redirect:/tenant/?id=%s", tenant.getIdTenant());
+//        return url;
+//    }
+
 }

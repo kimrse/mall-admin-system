@@ -36,7 +36,7 @@
       <input type="number" th:field="*{budget}" class="form-control col-4 mb-4" placeholder="Введите бюджет" />
       <div class="form-group">
         <label for="startDate">Выберите магазины для проведения акции:</label>
-        <select id="select" class="form-control" data-role="select-dropdown" data-profile="minimal" th:field="*{stores}" multiple="multiple">
+        <select id="select" class="form-control" data-role="select-dropdown" data-profile="minimal" th:field="*{store}">
           <option class="dropdown-item" th:each="store : ${stores}" th:value="${store.idStore}"
                   th:text="${'Павильон: '+store.idStore+' , Магазин: '+store.storeTitle}">
           </option>
@@ -60,7 +60,8 @@
       <button type="submit" class="btn btn-primary w-auto">Добавить</button>
     </div>
   </form>
+  <hr/>
+  <a class="btn" th:href="@{/promos}">Назад</a>
 </div>
-<hr/>
 </body>
 </html>

@@ -37,6 +37,14 @@ public class InvoiceService {
         invoiceRepository.save(invoice);
     }
 
+    public void updateTotalCost(Invoice invoice, Double storageCost) {
+        var rent = countTotalRentCost(invoice);
+        var totalCost = Double.sum(rent, storageCost);
+
+        invoice.setTotalCost(totalCost);
+        invoiceRepository.save(invoice);
+    }
+
     public Double countTotalRentCost(Invoice invoice) {
         var tax = invoice.getTax();
         var fee = invoice.getFee();
