@@ -47,7 +47,10 @@
               </a>
             </td>
             <td th:text="${vacancy.salary}"></td>
-            <td th:text="${vacancy.isActive()}"></td>
+            <td>
+              <span th:if="${vacancy.active == true}">Активна</span>
+              <span th:unless="${vacancy.active == true}">Не активна</span>
+            </td>
             <td>
               <a class="btn btn-info w-auto" th:href="@{/vacancies/(id=${vacancy.idVacancy})}">Подробнее</a>
             </td>

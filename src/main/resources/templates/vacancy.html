@@ -32,11 +32,13 @@
   <hr/>
   <div th:object="${vacancy}" class="container">
     <div class="shadow container p-4 m-4">
-      <h5>Наименование: </h5><span th:text="*{vacancyTitle}"></span>
-      <h5>Магазин: </h5><span th:text="*{store.storeTitle}"></span>
-      <h5>Зарплата: </h5><span th:text="*{salary}"></span>
-      <h5>Статус вакансии: </h5><span th:text="*{isActive()}"></span>
-      <h5>Описание вакансии: </h5><span th:text="*{vacancyDescription}"></span>
+      <h5 class="py-2">Наименование: </h5><span th:text="*{vacancyTitle}"></span>
+      <h5 class="py-2">Магазин: </h5><span th:text="*{store.storeTitle}"></span>
+      <h5 class="py-2">Зарплата: </h5><span th:text="*{salary}"></span>
+      <h5 class="py-2">Статус вакансии: </h5>
+      <span th:if="*{active == true}">Активна</span>
+      <span th:unless="*{active == true}">Не активна</span>
+      <h5 class="py-2">Описание вакансии: </h5><span th:text="*{vacancyDescription}"></span>
     </div>
   </div>
 </div>

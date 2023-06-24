@@ -24,6 +24,11 @@ public class InvoiceService {
         return invoices;
     }
 
+    public List<Invoice> getAllInvoicesByContractId(long id) {
+        var invoices = invoiceRepository.findAllByContractIdContract(id);
+        return invoices;
+    }
+
     public Invoice getInvoice(long id) {
         var invoice = invoiceRepository.findByIdInvoice(id);
         return invoice;

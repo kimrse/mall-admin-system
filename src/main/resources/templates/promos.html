@@ -45,11 +45,14 @@
     <tr th:each="promo: ${promos}">
       <td th:text="${promo.idPromo}"></td>
       <td th:text="${promo.promoType}"></td>
-      <td th:text="${promo.stores}"></td>
+      <td th:text="${promo.store.storeTitle}"></td>
       <td th:text="${promo.budget}"></td>
       <td th:text="${promo.startDate}"></td>
       <td th:text="${promo.endDate}"></td>
-      <td th:text="${promo.active}"></td>
+      <td>
+        <span th:if="${promo.active == true}">Активна</span>
+        <span th:unless="${promo.active == true}">Не активна</span>
+      </td>
       <td>
         <a class="btn btn-info w-auto" th:href="@{/promos/(id=${promo.idPromo})}">Подробнее</a>
       </td>

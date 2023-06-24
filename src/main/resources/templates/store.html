@@ -28,7 +28,7 @@
       <a th:if="${store.storeTitle != null}" th:href="@{/contracts/(id=${contract.idContract})}" class="btn btn-primary">Перейти к договору</a>
       <a th:if="${store.storeTitle != null}" th:href="@{/contracts/(id=${contract.idContract})}" class="btn btn-info">Редактировать</a>
       <a th:if="${store.storeTitle != null}" th:href="@{/contracts/(id=${contract.idContract})}" class="btn btn-danger">Очистить павильон</a>
-      <a th:unless="${store.storeTitle != null}" th:href="@{/stores/new}" class="btn btn-primary">Добавить магазин</a>
+      <a th:unless="${store.storeTitle != null}" th:href="@{/stores/edit/(id=${contract.store.idStore})}" class="btn btn-primary">Заполнить описание магазина</a>
   </span>
   <hr/>
   <div th:object="${store}" class="container">

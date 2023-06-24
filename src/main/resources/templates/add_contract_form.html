@@ -39,7 +39,8 @@
           <select class="form-control" data-role="select-dropdown" data-profile="minimal" th:field="*{store}">
             <option class="dropdown-item" value="0">Выберите магазин</option>
             <option th:each="store : ${emptyStores}" th:value="${store.idStore}"
-                    th:text="${'Магазин: '+store.idStore+', Этаж: '+store.floor+', Площадь: '+store.squareArea+', Цена: '+store.monthlyCost}">
+                    th:text="${'Магазин: '+store.idStore+', Этаж: '+store.floor+
+                    ', Площадь: '+store.squareArea+', Цена: '+store.monthlyCost+', Сдан: '+store.occupied}">
             </option>
           </select>
         </div>

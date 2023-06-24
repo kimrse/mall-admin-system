@@ -33,17 +33,19 @@
   <div th:object="${storage}" class="container">
     <div class="shadow container d-flex justify-content-around p-4 m-4">
       <div class="container">
-        <h5>Номер поставки: </h5><span th:text="*{idStorage}"></span>
-        <h5>Наименование поставки: </h5><span th:text="*{productName}"></span>
-        <h5>Магазин: </h5><span th:text="*{store.storeTitle}"></span>
-        <h5>Поставщик: </h5><span th:text="*{supplier}"></span>
-        <h5>Страна производитель: </h5><span th:text="*{manufacturerCountry}"></span>
+        <h5 class="py-2">Номер поставки: </h5><span th:text="*{idStorage}"></span>
+        <h5 class="py-2">Наименование поставки: </h5><span th:text="*{productName}"></span>
+        <h5 class="py-2">Магазин: </h5><span th:text="*{store.storeTitle}"></span>
+        <h5 class="py-2">Поставщик: </h5><span th:text="*{supplier}"></span>
+        <h5 class="py-2">Страна производитель: </h5><span th:text="*{manufacturerCountry}"></span>
       </div>
       <div class="container">
-        <h5>Количество товара: </h5><span th:text="*{amount}"></span>
-        <h5>Дата прибытия на склад: </h5><span th:text="*{arrivalDate}"></span>
-        <h5>Цена за день хранения: </h5><span th:text="*{costPerDay}"></span>
-        <h5>Статус доставки в магазин: </h5><span th:text="*{isDelivered()}"></span>
+        <h5 class="py-2">Количество товара: </h5><span th:text="*{amount}"></span>
+        <h5 class="py-2">Дата прибытия на склад: </h5><span th:text="*{arrivalDate}"></span>
+        <h5 class="py-2">Цена за день хранения: </h5><span th:text="*{costPerDay}"></span>
+        <h5 class="py-2">Статус доставки в магазин: </h5>
+        <span th:if="*{delivered == true}">Доставлено</span>
+        <span th:unless="*{delivered == true}">Ожидает</span>
         <h5>Дата доставки в магазин: </h5><span th:text="*{deliveryDate}"></span>
       </div>
     </div>

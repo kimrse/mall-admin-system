@@ -17,6 +17,10 @@ public class StoreService {
         storeRepository.save(store);
     }
 
+    public void editStore(Store store) {
+        storeRepository.save(store);
+    }
+
     public List<Store> getEmptyStores() {
         var emptyStores = storeRepository.findAllByIsOccupiedIsFalse();
         return emptyStores;

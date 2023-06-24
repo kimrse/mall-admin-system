@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class ContractController {
 
     private final ContractService contractService;
+
     private final StoreService storeService;
+
     private final TenantService tenantService;
+
+    private final InvoiceService invoiceService;
 
     @GetMapping()
     public String getContracts(Model model) {
@@ -26,6 +30,9 @@ public class ContractController {
     @GetMapping("/")
     public String getContractById(Model model, @RequestParam Long id) {
         var contract = contractService.getContract(id);
+        var invoices = invoiceService.getAllInvoicesByContractId(id);
+
+        model.addAttribute("invoices", invoices);
         model.addAttribute("contract", contract);
         return "contract";
     }
@@ -44,7 +51,7 @@ public class ContractController {
         var tenants = tenantService.getAllTenants();
 
         model.addAttribute("contract", contract);
-        model.addAttribute("emptyStores" , stores);
+        model.addAttribute("emptyStores", stores);
         model.addAttribute("tenants", tenants);
         return "add_contract_form";
     }

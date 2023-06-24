@@ -25,7 +25,9 @@
   <div class="container pt-4 my-5">
     <h3 class="text-center p-3">Информация о сотруднике:</h3>
     <span class="container p-4 m-4">
-        <a th:href="@{/stores/(id=${employee.store.idStore})}" class="btn btn-primary">Перейти к магазину</a>
+        <a th:href="@{/stores/(id=${employee.vacancy.store.idStore})}" class="btn btn-primary">Перейти к магазину</a>
+        <a th:href="@{/stores/(id=${employee.vacancy.store.idStore})}" class="btn btn-info">Редактировать</a>
+        <a th:href="@{/stores/(id=${employee.vacancy.store.idStore})}" class="btn btn-danger">Уволить сотрудника</a>
     </span>
     <hr/>
     <div th:object="${employee}" class="container">
@@ -33,7 +35,7 @@
         <h5>Номер сотрудника: </h5><span th:text="*{idEmployee}"></span>
         <h5>ФИО: </h5><span th:text="*{firstName+' '+lastName+' '+middleName}"></span>
         <h5>Номер телефона: </h5><span th:text="*{phone}"></span>
-        <h5>Название магазина:</h5><span th:text="${employee.store.storeTitle}"></span>
+        <h5>Название магазина:</h5><span th:text="${employee.vacancy.store.storeTitle}"></span>
         <h5>Должность: </h5><span th:text="*{jobTitle}"></span>
         <h5>Зарплата: </h5><span th:text="*{monthlySalary}"></span>
         <h5>Дата найма: </h5><span th:text="*{hireDate}"></span>

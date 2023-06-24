@@ -26,6 +26,16 @@ public class PromoService {
         promoRepository.save(promo);
     }
 
+    public void saveResults(long id, Promo promoResults) {
+        var promo = getPromoById(id);
+        var desc = promoResults.getPromoDescription();
+        var cover = promo.getResultsCoverage();
+
+        promo.setPromoDescription(desc);
+        promo.setResultsCoverage(cover);
+        promoRepository.save(promo);
+    }
+
     public List<Promo> getAllPromos() {
         var promos = promoRepository.findAll();
         return promos;
@@ -35,6 +45,5 @@ public class PromoService {
         var promo = promoRepository.findById(id);
         return promo;
     }
-
 
 }

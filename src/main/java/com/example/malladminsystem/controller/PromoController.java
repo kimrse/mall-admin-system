@@ -51,4 +51,21 @@ public class PromoController {
         return url;
     }
 
+    @GetMapping("/results/")
+    public String resultsPromoForm(@RequestParam Long id, Model model) {
+        var promo = promoService.getPromoById(id);
+
+        model.addAttribute("promo", promo);
+        return "results_promo_form";
+    }
+
+    @PostMapping("/results")
+    public String resultsPromo(@ModelAttribute("promo") Promo promo) {
+        var promoId = promo.getIdPromo();
+        promoService.saveResults(promoId, promo);
+
+        var url = String.format("redirect:/promos/?id=%s", promoId);
+        return url;
+    }
+
 }
