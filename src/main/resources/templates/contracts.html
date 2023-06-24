@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Договоры</title>
+  <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+</nav>
+<body>
+  <div class="container pt-3 my-5">
+    <h3 class="text-center p-3">Перечень договоров</h3>
+    <span class="container p-2">
+        <a class="btn btn-success w-auto .hover-shadow" th:href="@{/contracts/new}">Добавить договор</a>
+    </span>
+    <hr/>
+    <table class="table table-bordered" id="contractTable">
+      <thead>
+        <tr>
+          <th>Номер</th>
+          <th>ФИО</th>
+          <th>Павильон</th>
+          <th>Название магазина</th>
+          <th>Подписан</th>
+          <th>Срок действия</th>
+          <th>Оплата просрочена</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr th:each="contract: ${contracts}">
+            <td th:text="${contract.idContract}"></td>
+            <td th:text="${contract.tenant.firstName+' '+contract.tenant.lastName+' '+contract.tenant.middleName}"></td>
+            <td th:text="${contract.store.idStore}"></td>
+            <td th:text="${contract.store.storeTitle}"></td>
+            <td th:text="${contract.signedDate}"></td>
+            <td th:text="${contract.endDate}"></td>
+            <td th:text="${contract.isOverdue()}"></td>
+            <td>
+              <a class="btn btn-info w-auto" th:href="@{/contracts/(id=${contract.idContract})}">Подробнее</a>
+            </td>
+          </tr>
+        </tbody>
+
+    </table>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $("#contractTable").DataTable({
+              'aoColumnDefs': [{
+                  'bSortable': false,
+                  'aTargets': [-1] /* 1st one, start by the right */
+              }],
+              "oLanguage": {
+                  "sLengthMenu": "Показать _MENU_ записей",
+                  "sInfo": "Показано _END_ из _TOTAL_ записей",
+                  "sSearch": "Поиск:",
+                  "oPaginate": {
+                      "sNext": "Далее",
+                      "sPrevious": "Назад"
+                  },
+                  "sInfoEmpty": "Нет записей",
+                  "sEmptyTable": "Нет записей",
+                  "sZeroRecords": "Нет записей",}
+          });
+      })
+  </script>
+</body>
+</html>

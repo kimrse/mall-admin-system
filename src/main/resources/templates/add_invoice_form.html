@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавление учета</title>
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+</nav>
+<body>
+<div class="container pt-3 my-5">
+  <h3 class="text-center p-3">Добавить новый документ учета</h3>
+  <hr/>
+  <form th:action="@{/invoices}" th:object="${invoice}" method="POST">
+    <div class="d-flex align-items-center flex-column">
+      <div class="form-group">
+        <select class="form-control" data-role="select-dropdown" data-profile="minimal" th:field="*{contract}">
+          <option class="dropdown-item" value="0">Выберите договор</option>
+          <option class="dropdown-item" th:each="contract : ${contracts}" th:value="${contract.idContract}"
+                  th:text="${'Номер: '+contract.idContract+' , ФИО: '+contract.tenant.firstName+' '+contract.tenant.lastName+' '+contract.tenant.middleName+' , Магазин: '+contract.store.storeTitle}">
+          </option>
+        </select>
+      </div>
+      <input type="text" th:field="*{fee}" class="form-control col-4 mb-4" placeholder="Введите сумму штрафа (если есть)" />
+      <input type="text" th:field="*{tax}" class="form-control col-4 mb-4" placeholder="Введите налог %" />
+      <label for="dueDate">Оплатить до:</label>
+      <input id="dueDate" type="date" th:field="*{dueDate}" class="form-control col-4 mb-4" placeholder="Введите срок оплаты" />
+      <button type="submit" class="btn btn-primary w-auto">Добавить</button>
+    </div>
+  </form>
+</div>
+<hr/>
+</body>
+</html>

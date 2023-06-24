@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Перечень арендаторов</title>
+<!--  <link rel="stylesheet" th:href="@{../css/style.css}"/>-->
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+</nav>
+  <body>
+    <div class="container pt-3 my-5">
+      <h3 class="text-center p-3">Перечень арендаторов</h3>
+      <span class="container p-2">
+        <a class="btn btn-success w-auto .hover-shadow" th:href="@{/tenants/new}">Добавить арендатора</a>
+      </span>
+      <hr/>
+      <table class="table table-bordered" id="tenantTable">
+        <thead>
+          <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Отчество</th>
+            <th>Почта</th>
+            <th>Адрес</th>
+            <th>Номер телефона</th>
+            <th>Статус должника</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tenant: ${tenants}">
+          <td th:text="${tenant.firstName}"></td>
+          <td th:text="${tenant.lastName}"></td>
+          <td th:text="${tenant.middleName}"></td>
+          <td th:text="${tenant.email}"></td>
+          <td th:text="${tenant.phone}"></td>
+          <td th:text="${tenant.address}"></td>
+          <td th:text="${tenant.isDebtor()}"></td>
+          <td>
+            <a class="btn btn-info w-auto" th:href="@{/tenants/(id=${tenant.idTenant})}">Подробнее</a>
+          </td>
+        </tr>
+        </tbody>
+
+      </table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#tenantTable").DataTable({
+                'aoColumnDefs': [{
+                    'bSortable': false,
+                    'aTargets': [-1] /* 1st one, start by the right */
+                }],
+                "oLanguage": {
+                    "sLengthMenu": "Показать _MENU_ записей",
+                    "sInfo": "Показано _END_ из _TOTAL_ записей",
+                    "sSearch": "Поиск:",
+                    "oPaginate": {
+                        "sNext": "Далее",
+                        "sPrevious": "Назад"
+                    },
+                "sInfoEmpty": "Нет записей",
+                "sEmptyTable": "Нет записей",
+                "sZeroRecords": "Нет записей",}
+            });
+        })
+    </script>
+  </body>
+</html>
