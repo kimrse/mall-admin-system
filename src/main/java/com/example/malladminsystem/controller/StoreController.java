@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/stores")
+@RequestMapping("/api/v1/stores")
 public class StoreController {
     private final StoreService storeService;
 
@@ -51,11 +51,10 @@ public class StoreController {
     }
 
     @PostMapping("/edit")
-    public String editStore(@ModelAttribute("store") Store store) {
-        storeService.editStore(store);
-        var storeId = store.getIdStore();
+    public String editStore(@RequestParam Long id, @ModelAttribute("store") Store storeUpdate) {
+        storeService.editStore(id, storeUpdate);
 
-        var url = String.format("redirect:/stores/?id=%s", storeId);
+        var url = String.format("redirect:/api/v1/stores/?id=%s", id);
         return url;
     }
 
@@ -64,7 +63,7 @@ public class StoreController {
         storeService.addNewStore(store);
         var storeId = store.getIdStore();
 
-        var url = String.format("redirect:/stores/?id=%s", storeId);
+        var url = String.format("redirect:/api/v1/stores/?id=%s", storeId);
         return url;
     }
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("storage")
+@RequestMapping("/api/v1/storage")
 public class StorageController {
 
     private final StorageService storageService;
@@ -46,14 +46,14 @@ public class StorageController {
     @PostMapping
     public String addStorage(@ModelAttribute("storage") Storage storage) {
         storageService.addNewPosition(storage);
-        return "redirect:/storage";
+        return "redirect:/api/v1/storage";
     }
 
     @GetMapping("/update")
     public String deliverStorage(@RequestParam Long id) {
         storageService.deliverStorage(id);
 
-        var url = String.format("redirect:/storage/?id=%s", id);
+        var url = String.format("redirect:/api/v1/storage/?id=%s", id);
         return url;
     }
 

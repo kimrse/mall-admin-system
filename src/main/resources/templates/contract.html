@@ -13,22 +13,22 @@
         crossorigin="anonymous" />
 </head>
 <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
-  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/contracts}">Договоры</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
 </nav>
 <body>
   <div class="container pt-4 my-5">
     <h3 class="text-center p-3">Информация о договоре:</h3>
     <span class="container p-4 m-4">
-      <a th:href="@{/tenants/(id=${contract.tenant.idTenant})}" class="btn btn-primary">Перейти к арендатору</a>
-      <a th:href="@{/stores/(id=${contract.store.idStore})}" class="btn btn-info">Перейти к магазину</a>
-      <a th:href="@{/stores/(id=${contract.store.idStore})}" class="btn btn-danger">Деактивировать</a>
+      <a th:href="@{/api/v1/tenants/(id=${contract.tenant.idTenant})}" class="btn btn-primary">Перейти к арендатору</a>
+      <a th:href="@{/api/v1/stores/(id=${contract.store.idStore})}" class="btn btn-info">Перейти к магазину</a>
+      <a th:href="@{/api/v1/stores/(id=${contract.store.idStore})}" class="btn btn-danger">Деактивировать</a>
     </span>
     <hr/>
     <div class="container d-inline-flex" th:object="${contract}">
@@ -47,7 +47,7 @@
       <div class="shadow container p-4 m-4">
         <h5>Номер павильона: </h5><span th:text="*{store.idStore}"></span>
         <h5>Название магазина: </h5>
-        <a th:href="@{/stores/(id=*{store.idStore})}" th:text="*{store.storeTitle}"></a>
+        <a th:href="@{/api/v1/stores/(id=*{store.idStore})}" th:text="*{store.storeTitle}"></a>
         <h5>Тип магазина: </h5><span th:text="*{store.storeType}"></span>
         <h5>Площадь: </h5><span th:text="*{store.squareArea}"></span>
         <h5>Этаж: </h5><span th:text="*{store.floor}"></span>
@@ -83,7 +83,7 @@
               <span th:unless="${invoice.paid == true}">Нет</span>
             </td>
             <td>
-              <a class="btn btn-info w-auto" th:href="@{/invoices/(id=${invoice.idInvoice})}">Подробнее</a>
+              <a class="btn btn-info w-auto" th:href="@{/api/v1/invoices/(id=${invoice.idInvoice})}">Подробнее</a>
             </td>
           </tr>
           </tbody>

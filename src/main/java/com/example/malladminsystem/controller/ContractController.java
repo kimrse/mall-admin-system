@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/contracts")
+@RequestMapping("/api/v1/contracts")
 public class ContractController {
 
     private final ContractService contractService;
@@ -59,7 +59,7 @@ public class ContractController {
     @PostMapping
     public String addContract(@ModelAttribute("contract") Contract contract) {
         contractService.addNewContract(contract);
-        return "redirect:/contracts";
+        return "redirect:/api/v1/contracts";
     }
 
 }

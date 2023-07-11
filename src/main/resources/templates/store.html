@@ -12,23 +12,23 @@
         crossorigin="anonymous" />
 </head>
 <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/stores}">Павильоны</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
 </nav>
 <body>
 <div class="container pt-4 my-5">
   <h3 class="text-center p-3">Информация о павильоне:</h3>
   <span class="container p-4 m-4">
-      <a th:if="${store.storeTitle != null}" th:href="@{/contracts/(id=${contract.idContract})}" class="btn btn-primary">Перейти к договору</a>
-      <a th:if="${store.storeTitle != null}" th:href="@{/contracts/(id=${contract.idContract})}" class="btn btn-info">Редактировать</a>
-      <a th:if="${store.storeTitle != null}" th:href="@{/contracts/(id=${contract.idContract})}" class="btn btn-danger">Очистить павильон</a>
-      <a th:unless="${store.storeTitle != null}" th:href="@{/stores/edit/(id=${contract.store.idStore})}" class="btn btn-primary">Заполнить описание магазина</a>
+      <a th:if="${store.storeTitle != null}" th:href="@{/api/v1/contracts/(id=${contract.idContract})}" class="btn btn-primary">Перейти к договору</a>
+      <a th:if="${store.storeTitle != null}" th:href="@{/api/v1/contracts/(id=${contract.idContract})}" class="btn btn-info">Редактировать</a>
+      <a th:if="${store.storeTitle != null}" th:href="@{/api/v1/contracts/(id=${contract.idContract})}" class="btn btn-danger">Очистить павильон</a>
+      <a th:unless="${store.storeTitle != null}" th:href="@{/api/v1/stores/edit/(id=${contract.store.idStore})}" class="btn btn-primary">Заполнить описание магазина</a>
   </span>
   <hr/>
   <div th:object="${store}" class="container">

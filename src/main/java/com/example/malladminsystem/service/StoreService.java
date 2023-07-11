@@ -17,7 +17,13 @@ public class StoreService {
         storeRepository.save(store);
     }
 
-    public void editStore(Store store) {
+    public void editStore(long storeId, Store updateStore) {
+        var store = storeRepository.findById(storeId);
+
+        store.setStoreTitle(updateStore.getStoreTitle());
+        store.setStoreType(updateStore.getStoreType());
+        store.setStoreDescription(updateStore.getStoreDescription());
+
         storeRepository.save(store);
     }
 

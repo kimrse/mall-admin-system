@@ -13,19 +13,19 @@
         crossorigin="anonymous" />
 </head>
 <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
-  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/employees}">Сотрудники</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
 </nav>
 <body>
 <div class="container pt-3 my-5">
   <h3 class="text-center p-3">Перечень сотрудников</h3>
-  <a class="btn btn-success w-auto .hover-shadow" th:href="@{/employees/new}">Добавить сотрудника</a>
+  <a class="btn btn-success w-auto .hover-shadow" th:href="@{/api/v1/employees/new}">Добавить сотрудника</a>
   <hr/>
   <table class="table table-bordered" id="employeeTable">
     <thead>
@@ -42,7 +42,7 @@
     <tr th:each="employee: ${employees}">
       <td th:text="${employee.firstName+' '+employee.lastName+' '+employee.middleName}"></td>
       <td>
-        <a th:href="@{/stores/(id=${employee.vacancy.store.idStore})}"
+        <a th:href="@{/api/v1/stores/(id=${employee.vacancy.store.idStore})}"
            th:text="${employee.vacancy.store.storeTitle}">
         </a>
       </td>
@@ -50,7 +50,7 @@
       <td th:text="${employee.hireDate}"></td>
       <td th:text="${employee.monthlySalary}"></td>
       <td>
-        <a class="btn btn-info w-auto" th:href="@{/employees/(id=${employee.idEmployee})}">Подробнее</a>
+        <a class="btn btn-info w-auto" th:href="@{/api/v1/employees/(id=${employee.idEmployee})}">Подробнее</a>
       </td>
     </tr>
     </tbody>

@@ -12,20 +12,20 @@
         crossorigin="anonymous" />
 </head>
 <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
-  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/contracts}">Договоры</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
 </nav>
 <body>
   <div class="container pt-3 my-5">
     <h3 class="text-center p-3">Перечень договоров</h3>
     <span class="container p-2">
-        <a class="btn btn-success w-auto .hover-shadow" th:href="@{/contracts/new}">Добавить договор</a>
+        <a class="btn btn-success w-auto .hover-shadow" th:href="@{/api/v1/contracts/new}">Добавить договор</a>
     </span>
     <hr/>
     <table class="table table-bordered" id="contractTable">
@@ -47,7 +47,7 @@
             <td th:text="${contract.tenant.firstName+' '+contract.tenant.lastName+' '+contract.tenant.middleName}"></td>
             <td th:text="${contract.store.idStore}"></td>
             <td>
-              <a th:href="@{/stores/(id=${contract.store.idStore})}"
+              <a th:href="@{/api/v1/stores/(id=${contract.store.idStore})}"
                  th:text="${contract.store.storeTitle}">
               </a>
             </td>
@@ -58,7 +58,7 @@
               <span th:unless="${contract.overdue == true}">Нет</span>
             </td>
             <td>
-              <a class="btn btn-info w-auto" th:href="@{/contracts/(id=${contract.idContract})}">Подробнее</a>
+              <a class="btn btn-info w-auto" th:href="@{/api/v1/contracts/(id=${contract.idContract})}">Подробнее</a>
             </td>
           </tr>
         </tbody>

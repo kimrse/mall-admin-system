@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/employees")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -42,6 +42,6 @@ public class EmployeeController {
     @PostMapping
     public String addEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.addNewEmployee(employee);
-        return "redirect:/employees";
+        return "redirect:/api/v1/employees";
     }
 }

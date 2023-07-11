@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("promos")
+@RequestMapping("/api/v1/promos")
 public class PromoController {
 
     private final PromoService promoService;
@@ -47,7 +47,7 @@ public class PromoController {
         promoService.addNewPromo(promo);
         var promoId = promo.getIdPromo();
 
-        var url = String.format("redirect:/promos/?id=%s", promoId);
+        var url = String.format("redirect:/api/v1/promos/?id=%s", promoId);
         return url;
     }
 
@@ -64,7 +64,7 @@ public class PromoController {
         var promoId = promo.getIdPromo();
         promoService.saveResults(promoId, promo);
 
-        var url = String.format("redirect:/promos/?id=%s", promoId);
+        var url = String.format("redirect:/api/v1/promos/?id=%s", promoId);
         return url;
     }
 

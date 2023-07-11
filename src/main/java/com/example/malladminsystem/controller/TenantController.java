@@ -12,7 +12,7 @@ import org.springframework.web.multipart.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/tenants")
+@RequestMapping("/api/v1/tenants")
 public class TenantController {
 
     private final TenantService tenantService;
@@ -46,7 +46,7 @@ public class TenantController {
     @PostMapping
     public String addTenant(@ModelAttribute("tenant") Tenant tenant) {
         tenantService.addNewTenant(tenant);
-        return "redirect:/tenants";
+        return "redirect:/api/v1/tenants";
     }
 
 //    @GetMapping("/upload/")

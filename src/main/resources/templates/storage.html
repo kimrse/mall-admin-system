@@ -12,22 +12,22 @@
         crossorigin="anonymous" />
 </head>
 <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
-  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/storage}">Поставки</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
 </nav>
 <body>
 <div class="container pt-4 my-5">
   <h3 class="text-center p-3">Информация о поставке:</h3>
   <span class="container p-4 m-4">
-    <a th:href="@{/stores/(id=${storage.store.idStore})}" class="btn btn-primary">Перейти к магазину</a>
-    <a th:href="@{/storage/edit(id=${storage.idStorage})}" class="btn btn-success">Редактировать поставку</a>
-    <a th:href="@{/storage/update(id=${storage.idStorage})}" class="btn btn-warning">Обновить статус доставки в магазин</a>
+    <a th:href="@{/api/v1/stores/(id=${storage.store.idStore})}" class="btn btn-primary">Перейти к магазину</a>
+    <a th:href="@{/api/v1/storage/edit(id=${storage.idStorage})}" class="btn btn-success">Редактировать поставку</a>
+    <a th:href="@{/api/v1/storage/update(id=${storage.idStorage})}" class="btn btn-warning">Обновить статус доставки в магазин</a>
   </span>
   <hr/>
   <div th:object="${storage}" class="container">

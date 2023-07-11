@@ -17,20 +17,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 </head>
 <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
-  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/promos}">Акции</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/promos}">Акции</a>
 </nav>
 <body>
 <div class="container pt-3 my-5">
   <h3 class="text-center p-3">Добавить новую акцию</h3>
   <hr/>
-  <form th:action="@{/promos}" th:object="${promo}" method="POST">
+  <form th:action="@{/api/v1/promos}" th:object="${promo}" method="POST">
     <div class="d-flex align-items-center flex-column">
       <input type="text" th:field="*{promoType}" class="form-control col-4 mb-4" placeholder="Введите вид акции" />
       <input type="number" th:field="*{budget}" class="form-control col-4 mb-4" placeholder="Введите бюджет" />
@@ -62,7 +62,7 @@
     <input type="hidden" th:field="*{idPromo}"/>
   </form>
   <hr/>
-  <a class="btn" th:href="@{/promos}">Назад</a>
+  <a class="btn" th:href="@{/api/v1/promos}">Назад</a>
 </div>
 </body>
 </html>

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("invoices")
+@RequestMapping("/api/v1/invoices")
 public class InvoiceController {
 
     private final InvoiceService invoiceService;
@@ -50,7 +50,7 @@ public class InvoiceController {
     public String updatePaidStatus(@RequestParam Long id) {
         invoiceService.setPaidStatus(id);
 
-        var url = String.format("redirect:/invoices/?id=%s", id);
+        var url = String.format("redirect:/api/v1/invoices/?id=%s", id);
         return url;
     }
 
@@ -80,7 +80,7 @@ public class InvoiceController {
 
         invoice.setTotalCost(totalCost);
         invoiceService.addNewInvoice(invoice);
-        return "redirect:/invoices";
+        return "redirect:/api/v1/invoices";
     }
 
 }

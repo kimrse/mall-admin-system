@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/vacancies")
+@RequestMapping("/api/v1/vacancies")
 public class VacancyController {
 
     private final VacancyService vacancyService;
@@ -43,14 +43,14 @@ public class VacancyController {
     @PostMapping
     public String addVacancy(@ModelAttribute("vacancy") Vacancy vacancy) {
         vacancyService.addNewVacancy(vacancy);
-        return "redirect:/vacancies";
+        return "redirect:/api/v1/vacancies";
     }
 
     @GetMapping("/update")
     public String updateStatus(@RequestParam Long id) {
         vacancyService.updateStatus(id);
 
-        var url = String.format("redirect:/vacancies/?id=%s", id);
+        var url = String.format("redirect:/api/v1/vacancies/?id=%s", id);
         return url;
     }
 

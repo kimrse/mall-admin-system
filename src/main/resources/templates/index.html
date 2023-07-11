@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
+</nav>
+</head>
+<body>
+  <div class="container pt-4 my-5">
+    <h3 class="text-center p-3">Информация о веб-приложении</h3>
+      <div class="shadow container p-4">
+        <h5 class="p-3">Приложение предназначено для автоматизации следующих бизнес-процессов ТЦ "БУМ":</h5>
+        <p>1.	Формирование отчета о составлении договора аренды.</p>
+        <p>2.	Формирование отчета о получении арендной платы.</p>
+        <p>3.	Формирование отчета о найме сотрудника.</p>
+        <p>4.	Формирование ведомости о поставке товара.</p>
+        <p>5.	Формирование отчета о проведении акции.</p>
+        <h5 class="p-3">Возможности приложения:</h5>
+        <p>1.	Просмотр и добавление новой информации об арендаторах.</p>
+        <p>2.	Просмотр и добавление новой информации о договорах аренды.</p>
+        <p>3.	Просмотр существующих и добавление документов учета арендной платы по каждому арендатору с автоматическим учетом стоимости аренды помещения и товаров на складе.</p>
+        <p>4.	Просмотр и добавление информации о магазинах арендаторов в павильонах ТЦ.</p>
+        <p>5.	Просмотр информации о сотрудниках каждого магазина, а также добавление новых.</p>
+        <p>6.	Просмотр существующих вакансий магазинов и их добавление.</p>
+        <p>7.	Просмотр и добавление новой информации о поставках товара каждому из магазинов.</p>
+        <p>8.	Просмотр и добавление новой информации об акциях магазинов.</p>
+      </div>
+  </div>
+</body>
+</html>
