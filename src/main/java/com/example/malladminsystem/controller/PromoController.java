@@ -78,4 +78,20 @@ public class PromoController {
         return url;
     }
 
+    @GetMapping("/edit/")
+    public String editPromoForm(@RequestParam Long id, Model model) {
+        var promo = promoService.getPromoById(id);
+
+        model.addAttribute("promo", promo);
+        return "edit_promo_form";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editPromo(@PathVariable Long id, @ModelAttribute("promo") Promo promoUpdate) {
+        promoService.editPromo(id, promoUpdate);
+
+        var url = String.format("redirect:/api/v1/promos/?id=%s", id);
+        return url;
+    }
+
 }

@@ -51,4 +51,35 @@ public class TenantService {
         tenantRepository.save(tenant);
     }
 
+    public void editTenant(long tenantId, Tenant tenantUpdate) {
+        var tenant = tenantRepository.findById(tenantId);
+
+        if (tenantUpdate.getFirstName() != null) {
+            tenant.setFirstName(tenantUpdate.getFirstName());
+        }
+        if (tenantUpdate.getLastName() != null) {
+            tenant.setLastName(tenantUpdate.getLastName());
+        }
+        if (tenantUpdate.getMiddleName() != null) {
+            tenant.setMiddleName(tenantUpdate.getMiddleName());
+        }
+        if (tenantUpdate.getPassNum() != null) {
+            tenant.setPassNum(tenantUpdate.getPassNum());
+        }
+        if (tenantUpdate.getInnNum() != null) {
+            tenant.setInnNum(tenantUpdate.getInnNum());
+        }
+        if (tenantUpdate.getEmail() != null) {
+            tenant.setEmail(tenantUpdate.getEmail());
+        }
+        if (tenantUpdate.getAddress() != null) {
+            tenant.setAddress(tenantUpdate.getAddress());
+        }
+        if (tenantUpdate.getPhone() != null) {
+            tenant.setPhone(tenantUpdate.getPhone());
+        }
+
+        tenantRepository.save(tenant);
+    }
+
 }

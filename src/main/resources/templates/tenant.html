@@ -26,8 +26,8 @@
 <div class="shadow container pt-4 my-5">
   <h3 class="text-center p-3">Информация об арендаторе:</h3>
   <span class="container p-4 m-4">
-    <a th:href="@{/api/v1/contracts}" class="btn btn-primary">Редактировать</a>
-    <a th:href="@{${'/api/v1/tenants/upload/?id='+tenant.idTenant}}" class="btn btn-info">Изменить фото</a>
+    <a th:href="@{/api/v1/tenants/edit/(id=${tenant.idTenant})}" class="btn btn-primary">Редактировать</a>
+<!--    <a th:href="@{${'/api/v1/tenants/upload/?id='+tenant.idTenant}}" class="btn btn-info">Изменить фото</a>-->
     <a th:href="@{/api/v1/tenants/update/status/{id}(id=${tenant.idTenant})}" class="btn btn-warning">Обновить статус</a>
   </span>
   <hr/>

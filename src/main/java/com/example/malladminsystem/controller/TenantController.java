@@ -57,6 +57,22 @@ public class TenantController {
         return url;
     }
 
+    @GetMapping("/edit/")
+    public String editTenantForm(@RequestParam Long id, Model model) {
+        var tenant = tenantService.getTenantById(id);
+
+        model.addAttribute("tenant", tenant);
+        return "edit_tenant_form";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editTenant(@PathVariable Long id, @ModelAttribute("tenant") Tenant tenantUpdate) {
+        tenantService.editTenant(id, tenantUpdate);
+
+        var url = String.format("redirect:/api/v1/tenants/?id=%s", id);
+        return url;
+    }
+
 //    @GetMapping("/upload/")
 //    public String imageUploadForm(@RequestParam Long id, Model model) {
 //        var tenant = tenantService.getTenantById(id);

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование акции</title>
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+</head>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/promos}">Акции</a>
+</nav>
+<body>
+<div class="container pt-3 my-5">
+  <h3 class="text-center p-3">Редактировать акцию с номером:</h3>
+  <h4 th:text="${promo.idPromo}" class="text-center p-1"></h4>
+  <hr/>
+  <form th:action="@{/api/v1/promos/edit/{id}(id=${promo.idPromo})}" th:object="${promo}" method="POST">
+    <div class="d-flex align-items-center flex-column">
+      <input type="text" th:field="*{promoType}" class="form-control col-4 mb-4" placeholder="Введите вид акции" />
+      <input type="number" th:field="*{budget}" class="form-control col-4 mb-4" placeholder="Введите бюджет" />
+      <div class="container d-flex flex-row justify-content-center my-4">
+        <div class="mr-4 ml-4">
+          <label for="startDate">Выберите дату начала акции:</label>
+          <input id="startDate" type="date" th:field="*{startDate}" class="form-control"/>
+        </div>
+        <div class="mr-4 ml-4">
+          <label for="endDate">Выберите дату завершения акции:</label>
+          <input id="endDate" type="date" th:field="*{endDate}" class="form-control"/>
+        </div>
+      </div>
+      <div class="container form-outline mb-4">
+        <textarea class="form-control" id="textAreaExample" rows="10"
+                  th:field="*{promoDescription}" placeholder="Введите описание акции">
+        </textarea>
+      </div>
+      <button type="submit" class="btn btn-primary w-auto">Обновить</button>
+    </div>
+    <input type="hidden" th:field="*{idPromo}"/>
+  </form>
+  <hr/>
+  <a class="btn" th:href="@{/api/v1/promos/(id=${promo.idPromo})}">Назад</a>
+</div>
+</body>
+</html>

@@ -19,7 +19,7 @@ public class EmployeeService {
         return employees;
     }
 
-    public Employee getVacancy(long id) {
+    public Employee getEmployee(long id) {
         var employee = employeeRepository.findById(id);
         return employee;
     }
@@ -34,4 +34,27 @@ public class EmployeeService {
         employeeRepository.save(employee);
     }
 
+    public void editEmployee(long employeeId, Employee employeeUpdate) {
+        var employee = getEmployee(employeeId);
+
+        if (employeeUpdate.getFirstName() != null) {
+            employee.setFirstName(employeeUpdate.getFirstName());
+        }
+        if (employeeUpdate.getLastName() != null) {
+            employee.setLastName(employeeUpdate.getLastName());
+        }
+        if (employeeUpdate.getMiddleName() != null) {
+            employee.setMiddleName(employeeUpdate.getMiddleName());
+        }
+        if (employeeUpdate.getPhone() != null) {
+            employee.setPhone(employeeUpdate.getPhone());
+        }
+
+        employeeRepository.save(employee);
+    }
+
+    public void deleteEmployee(long id) {
+        var employee = getEmployee(id);
+        employeeRepository.delete(employee);
+    }
 }

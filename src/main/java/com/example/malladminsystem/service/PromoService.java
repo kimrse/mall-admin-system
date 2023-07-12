@@ -55,4 +55,25 @@ public class PromoService {
         promoRepository.save(promo);
     }
 
+    public void editPromo(long promoId, Promo promoUpdate) {
+        var promo = getPromoById(promoId);
+
+        if (promoUpdate.getPromoType() != null) {
+            promo.setPromoType(promoUpdate.getPromoType());
+        }
+        if (promoUpdate.getBudget() != null) {
+            promo.setBudget(promoUpdate.getBudget());
+        }
+        if (promoUpdate.getStartDate() != null) {
+            promo.setStartDate(promoUpdate.getStartDate());
+        }
+        if (promoUpdate.getEndDate() != null) {
+            promo.setEndDate(promoUpdate.getEndDate());
+        }
+        if (promoUpdate.getPromoDescription() != null) {
+            promo.setPromoDescription(promoUpdate.getPromoDescription());
+        }
+
+        promoRepository.save(promo);
+    }
 }

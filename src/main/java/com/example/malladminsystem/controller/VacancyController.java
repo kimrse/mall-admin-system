@@ -54,4 +54,20 @@ public class VacancyController {
         return url;
     }
 
+    @GetMapping("/edit/")
+    public String editVacancyForm(@RequestParam Long id, Model model) {
+        var vacancy = vacancyService.getVacancy(id);
+
+        model.addAttribute("vacancy", vacancy);
+        return "edit_vacancy_form";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editVacancy(@PathVariable Long id, @ModelAttribute("vacancy") Vacancy vacancyUpdate) {
+        vacancyService.editVacancy(id, vacancyUpdate);
+
+        var url = String.format("redirect:/api/v1/vacancies/?id=%s", id);
+        return url;
+    }
+
 }

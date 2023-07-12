@@ -40,7 +40,7 @@
     </thead>
     <tbody>
     <tr th:each="employee: ${employees}">
-      <td th:text="${employee.firstName+' '+employee.lastName+' '+employee.middleName}"></td>
+      <td th:text="${employee.lastName+' '+employee.firstName+' '+employee.middleName}"></td>
       <td>
         <a th:href="@{/api/v1/stores/(id=${employee.vacancy.store.idStore})}"
            th:text="${employee.vacancy.store.storeTitle}">

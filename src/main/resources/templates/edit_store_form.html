@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Добавление магазина</title>
+  <title>Редактирование магазина</title>
   <link rel="stylesheet"
         type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
@@ -23,7 +23,8 @@
 </nav>
 <body>
 <div class="container pt-3 my-5">
-  <h3 class="text-center p-3">Редактировать информацию о магазине</h3>
+  <h3 class="text-center p-3">Редактировать магазин с номером:</h3>
+  <h4 th:text="${store.idStore}" class="text-center p-1"></h4>
   <hr/>
   <form th:action="@{/api/v1/stores/edit/{id}(id=${store.idStore})}" th:object="${store}" method="POST">
     <div class="d-flex flex-column">
@@ -36,7 +37,7 @@
                   th:field="*{storeDescription}" placeholder="Введите описание магазина">
         </textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Добавить</button>
+      <button type="submit" class="btn btn-primary">Обновить</button>
     </div>
   </form>
   <hr/>

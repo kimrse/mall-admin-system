@@ -57,4 +57,20 @@ public class StorageController {
         return url;
     }
 
+    @GetMapping("/edit/")
+    public String editStorageForm(@RequestParam Long id, Model model) {
+        var storage = storageService.getStorage(id);
+
+        model.addAttribute("storage", storage);
+        return "edit_storage_form";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editStorage(@PathVariable Long id, @ModelAttribute("storage") Storage storageUpdate) {
+        storageService.editStorage(id, storageUpdate);
+
+        var url = String.format("redirect:/api/v1/storage/?id=%s", id);
+        return url;
+    }
+
 }
