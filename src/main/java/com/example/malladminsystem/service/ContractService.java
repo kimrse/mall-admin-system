@@ -49,4 +49,19 @@ public class ContractService {
         contractRepository.save(contract);
     }
 
+    public void updateActiveStatus(long id) {
+        var contract = contractRepository.findById(id);
+        var status = contract.isActive();
+
+        contract.setActive(!status);
+        contractRepository.save(contract);
+    }
+
+    public void updateOverdueStatus(long id) {
+        var contract = contractRepository.findById(id);
+        var status = contract.isOverdue();
+
+        contract.setOverdue(!status);
+        contractRepository.save(contract);
+    }
 }

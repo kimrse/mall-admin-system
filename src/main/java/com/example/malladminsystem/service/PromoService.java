@@ -28,11 +28,12 @@ public class PromoService {
 
     public void saveResults(long id, Promo promoResults) {
         var promo = getPromoById(id);
-        var desc = promoResults.getPromoDescription();
-        var cover = promo.getResultsCoverage();
+        var details = promoResults.getResultsDetails();
+        var cover = promoResults.getResultsCoverage();
 
-        promo.setPromoDescription(desc);
+        promo.setResultsDetails(details);
         promo.setResultsCoverage(cover);
+        promo.setActive(false);
         promoRepository.save(promo);
     }
 
@@ -44,6 +45,14 @@ public class PromoService {
     public Promo getPromoById(long id) {
         var promo = promoRepository.findById(id);
         return promo;
+    }
+
+    public void updateActiveStatus(long id) {
+        var promo = promoRepository.findById(id);
+        var status = promo.isActive();
+
+        promo.setActive(!status);
+        promoRepository.save(promo);
     }
 
 }

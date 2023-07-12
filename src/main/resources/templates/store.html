@@ -26,9 +26,9 @@
   <h3 class="text-center p-3">Информация о павильоне:</h3>
   <span class="container p-4 m-4">
       <a th:if="${store.storeTitle != null}" th:href="@{/api/v1/contracts/(id=${contract.idContract})}" class="btn btn-primary">Перейти к договору</a>
-      <a th:if="${store.storeTitle != null}" th:href="@{/api/v1/contracts/(id=${contract.idContract})}" class="btn btn-info">Редактировать</a>
-      <a th:if="${store.storeTitle != null}" th:href="@{/api/v1/contracts/(id=${contract.idContract})}" class="btn btn-danger">Очистить павильон</a>
-      <a th:unless="${store.storeTitle != null}" th:href="@{/api/v1/stores/edit/(id=${contract.store.idStore})}" class="btn btn-primary">Заполнить описание магазина</a>
+      <a th:if="${store.storeTitle != null}" th:href="@{/api/v1/stores/edit/(id=${store.idStore})}" class="btn btn-info">Редактировать</a>
+      <a th:if="${store.storeTitle != null}" th:href="@{/api/v1/stores/clear/{id}(id=${store.idStore})}" class="btn btn-danger">Очистить павильон</a>
+      <a th:unless="${store.storeTitle != null}" th:href="@{/api/v1/stores/edit/(id=${store.idStore})}" class="btn btn-primary">Заполнить описание магазина</a>
   </span>
   <hr/>
   <div th:object="${store}" class="container">

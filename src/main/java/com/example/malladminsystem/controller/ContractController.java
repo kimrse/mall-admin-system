@@ -62,4 +62,19 @@ public class ContractController {
         return "redirect:/api/v1/contracts";
     }
 
+    @GetMapping("/update/active/{id}")
+    public String updateActiveStatus(@PathVariable Long id) {
+        contractService.updateActiveStatus(id);
+
+        var url = String.format("redirect:/api/v1/contracts/?id=%s", id);
+        return url;
+    }
+
+    @GetMapping("/update/overdue/{id}")
+    public String updateOverdueStatus(@PathVariable Long id) {
+        contractService.updateOverdueStatus(id);
+
+        var url = String.format("redirect:/api/v1/contracts/?id=%s", id);
+        return url;
+    }
 }

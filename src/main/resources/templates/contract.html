@@ -28,7 +28,9 @@
     <span class="container p-4 m-4">
       <a th:href="@{/api/v1/tenants/(id=${contract.tenant.idTenant})}" class="btn btn-primary">Перейти к арендатору</a>
       <a th:href="@{/api/v1/stores/(id=${contract.store.idStore})}" class="btn btn-info">Перейти к магазину</a>
-      <a th:href="@{/api/v1/stores/(id=${contract.store.idStore})}" class="btn btn-danger">Деактивировать</a>
+      <a th:if="${contract.active == false}" th:href="@{/api/v1/contracts/update/active/{id}(id=${contract.idContract})}" class="btn btn-warning">Активировать</a>
+      <a th:if="${contract.active == true}" th:href="@{/api/v1/contracts/update/active/{id}(id=${contract.idContract})}" class="btn btn-danger">Деактивировать</a>
+      <a th:if="${contract.active == true}" th:href="@{/api/v1/contracts/update/overdue/{id}(id=${contract.idContract})}" class="btn btn-warning">Обновить статус</a>
     </span>
     <hr/>
     <div class="container d-inline-flex" th:object="${contract}">
@@ -40,8 +42,8 @@
         <h5>Дата окончания действия договора: </h5><span th:text="*{endDate}"></span>
         <h5>Статусы договора: </h5>
         <span th:if="${contract.active == true}">Активен</span>
-        <span th:unless="${contract.active == true}">Прекращен</span>
-        <span th:if="${contract.overdue == true}">Оплата по договору просрочена</span>
+        <span th:unless="${contract.active == true}">Прекращен</span><br>
+        <span th:if="${contract.overdue == true && contract.active == true}">Оплата по договору просрочена</span>
         <h5>Детальная информация: </h5><span th:text="*{details}"></span>
       </div>
       <div class="shadow container p-4 m-4">

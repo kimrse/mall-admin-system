@@ -1,11 +1,14 @@
 package com.example.malladminsystem.controller;
 
+import java.io.*;
+
 import com.example.malladminsystem.model.*;
 import com.example.malladminsystem.service.*;
 import lombok.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -59,12 +62,19 @@ public class PromoController {
         return "results_promo_form";
     }
 
-    @PostMapping("/results")
-    public String resultsPromo(@ModelAttribute("promo") Promo promo) {
-        var promoId = promo.getIdPromo();
-        promoService.saveResults(promoId, promo);
+    @PostMapping("/results/{id}")
+    public String resultsPromo(@PathVariable Long id, @ModelAttribute("promo") Promo promo) {
+        promoService.saveResults(id, promo);
 
-        var url = String.format("redirect:/api/v1/promos/?id=%s", promoId);
+        var url = String.format("redirect:/api/v1/promos/?id=%s", id);
+        return url;
+    }
+
+    @GetMapping("/update/active/{id}")
+    public String updateActiveStatus(@PathVariable Long id) {
+        promoService.updateActiveStatus(id);
+
+        var url = String.format("redirect:/api/v1/promos/?id=%s", id);
         return url;
     }
 

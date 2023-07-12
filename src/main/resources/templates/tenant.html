@@ -28,14 +28,14 @@
   <span class="container p-4 m-4">
     <a th:href="@{/api/v1/contracts}" class="btn btn-primary">Редактировать</a>
     <a th:href="@{${'/api/v1/tenants/upload/?id='+tenant.idTenant}}" class="btn btn-info">Изменить фото</a>
-    <a th:href="@{/api/v1/contracts}" class="btn btn-warning">Обновить статус</a>
+    <a th:href="@{/api/v1/tenants/update/status/{id}(id=${tenant.idTenant})}" class="btn btn-warning">Обновить статус</a>
   </span>
   <hr/>
   <div th:object="${tenant}" class="container">
     <div class="container d-flex p-4 m-4">
       <div class="container flex-column">
-        <div><h5 class="py-2 m-auto">ФИО: </h5 ><span class="m-auto" th:text="*{lastName+' '+firstName+' '+middleName}"></span></div>
         <div><h5 class="py-2 m-auto">Номер арендатора: </h5><span class="m-auto" th:text="*{idTenant}"></span></div>
+        <div><h5 class="py-2 m-auto">ФИО: </h5 ><span class="m-auto" th:text="*{lastName+' '+firstName+' '+middleName}"></span></div>
         <div><h5 class="py-2 m-auto">Почта: </h5><span class="m-auto" th:text="*{email}"></span></div>
         <div ><h5 class="py-2 m-auto">Адрес: </h5><span class="m-auto" th:text="*{address}"></span></div>
       </div>

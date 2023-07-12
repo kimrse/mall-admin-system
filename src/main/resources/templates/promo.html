@@ -27,7 +27,7 @@
   <span class="container p-4 m-4">
     <a th:href="@{/api/v1/promos/results/(id=${promo.idPromo})}" class="btn btn-primary">Добавить результаты</a>
     <a th:href="@{/api/v1/promos/edit(id=${promo.idPromo})}" class="btn btn-info">Редактировать акцию</a>
-    <a th:href="@{/api/v1/promos/update(id=${promo.idPromo})}" class="btn btn-warning">Обновить статус</a>
+    <a th:href="@{/api/v1/promos/update/active/{id}(id=${promo.idPromo})}" class="btn btn-warning">Обновить статус</a>
   </span>
   <hr/>
   <div th:object="${promo}" class="container">

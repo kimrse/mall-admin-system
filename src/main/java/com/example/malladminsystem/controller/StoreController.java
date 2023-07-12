@@ -1,11 +1,14 @@
 package com.example.malladminsystem.controller;
 
+import java.io.*;
+
 import com.example.malladminsystem.model.*;
 import com.example.malladminsystem.service.*;
 import lombok.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -50,8 +53,8 @@ public class StoreController {
         return "edit_store_form";
     }
 
-    @PostMapping("/edit")
-    public String editStore(@RequestParam Long id, @ModelAttribute("store") Store storeUpdate) {
+    @PostMapping("/edit/{id}")
+    public String editStore(@PathVariable Long id, @ModelAttribute("store") Store storeUpdate) {
         storeService.editStore(id, storeUpdate);
 
         var url = String.format("redirect:/api/v1/stores/?id=%s", id);
@@ -64,6 +67,34 @@ public class StoreController {
         var storeId = store.getIdStore();
 
         var url = String.format("redirect:/api/v1/stores/?id=%s", storeId);
+        return url;
+    }
+
+    @GetMapping("/clear/{id}")
+    public String clearStore(@PathVariable Long id) {
+        storeService.clearStore(id);
+
+        var url = String.format("redirect:/api/v1/stores/?id=%s", id);
+        return url;
+    }
+
+    @GetMapping("/upload/")
+    public String imageUploadForm(@RequestParam Long id, Model model) {
+        var store = storeService.getStoreById(id);
+
+        model.addAttribute("store", store);
+        return "upload_store_photo";
+    }
+
+    @PostMapping("/upload/{id}")
+    public String uploadImage(
+        @PathVariable Long id,
+        @RequestParam("image") MultipartFile file
+    ) throws IOException {
+        var store = storeService.getStoreById(id);
+        storeService.saveImage(store, file);
+
+        var url = String.format("redirect:/api/v1/stores/?id=%s", store.getIdStore());
         return url;
     }
 

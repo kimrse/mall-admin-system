@@ -43,4 +43,12 @@ public class TenantService {
         tenantRepository.save(tenant);
     }
 
+    public void updateStatus(long id) {
+        var tenant = tenantRepository.findById(id);
+        var status = tenant.isDebtor();
+
+        tenant.setDebtor(!status);
+        tenantRepository.save(tenant);
+    }
+
 }

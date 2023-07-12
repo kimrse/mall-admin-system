@@ -49,6 +49,14 @@ public class TenantController {
         return "redirect:/api/v1/tenants";
     }
 
+    @GetMapping("/update/status/{id}")
+    public String updateStatus(@PathVariable Long id) {
+        tenantService.updateStatus(id);
+
+        var url = String.format("redirect:/api/v1/tenants/?id=%s", id);
+        return url;
+    }
+
 //    @GetMapping("/upload/")
 //    public String imageUploadForm(@RequestParam Long id, Model model) {
 //        var tenant = tenantService.getTenantById(id);
