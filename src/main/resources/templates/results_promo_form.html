@@ -15,41 +15,32 @@
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/contracts}">Договоры</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/promos}">Акции</a>
 </nav>
 <body>
 <div class="container pt-3 my-5">
-  <h3 class="text-center p-3">Добавить новый магазин</h3>
+  <h3 class="text-center p-3">Добавить результаты акции</h3>
   <hr/>
-  <form th:action="@{/api/v1/stores}" th:object="${store}" method="POST">
+  <form th:action="@{/api/v1/promos/results/{id}(id=${promo.idPromo})}" th:object="${promo}" method="POST">
     <div class="d-flex flex-column">
-      <div class="form-group">
-        <select class="form-control" data-role="select-dropdown" data-profile="minimal" th:field="*{idStore}">
-          <option class="dropdown-item" value="0">Выберите свободный павильон</option>
-          <option class="dropdown-item" th:each="freestore : ${stores}" th:value="${store}"
-                  th:text="${'Номер павильона: '+freestore.idStore+', Площадь: '+freestore.squareArea+
-                  ', Этаж: '+freestore.floor+', Стоимость аренды: '+freestore.monthlyCost}">
-          </option>
-        </select>
-      </div>
       <div>
-        <input type="text" th:field="*{storeTitle}" class="form-control col-4 mb-4" placeholder="Введите название магазина"/>
-        <input type="text" th:field="*{storeType}" class="form-control col-4 mb-4" placeholder="Введите тип магазина"/>
+        <input type="number" th:field="*{resultsCoverage}" class="form-control col-4 mb-4" placeholder="Введите охват акции"/>
       </div>
       <div class="form-outline">
         <textarea class="form-control mb-4" id="textAreaExample" rows="10"
-                  th:field="*{storeDescription}" placeholder="Введите описание магазина">
+                  th:field="*{resultsDetails}" placeholder="Введите результаты проведения акции">
         </textarea>
       </div>
       <button type="submit" class="btn btn-primary">Добавить</button>
     </div>
+    <input type="hidden" th:field="*{idPromo}" />
   </form>
   <hr/>
-  <a class="btn" th:href="@{/api/v1/stores}">Назад</a>
+  <a class="btn" th:href="@{/api/v1/promos}">Назад</a>
 </div>
 </body>
 </html>

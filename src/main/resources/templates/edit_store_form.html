@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Добавление магазина</title>
+  <title>Редактирование магазина</title>
   <link rel="stylesheet"
         type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
@@ -23,19 +23,11 @@
 </nav>
 <body>
 <div class="container pt-3 my-5">
-  <h3 class="text-center p-3">Добавить новый магазин</h3>
+  <h3 class="text-center p-3">Редактировать магазин с номером:</h3>
+  <h4 th:text="${store.idStore}" class="text-center p-1"></h4>
   <hr/>
-  <form th:action="@{/api/v1/stores}" th:object="${store}" method="POST">
+  <form th:action="@{/api/v1/stores/edit/{id}(id=${store.idStore})}" th:object="${store}" method="POST">
     <div class="d-flex flex-column">
-      <div class="form-group">
-        <select class="form-control" data-role="select-dropdown" data-profile="minimal" th:field="*{idStore}">
-          <option class="dropdown-item" value="0">Выберите свободный павильон</option>
-          <option class="dropdown-item" th:each="freestore : ${stores}" th:value="${store}"
-                  th:text="${'Номер павильона: '+freestore.idStore+', Площадь: '+freestore.squareArea+
-                  ', Этаж: '+freestore.floor+', Стоимость аренды: '+freestore.monthlyCost}">
-          </option>
-        </select>
-      </div>
       <div>
         <input type="text" th:field="*{storeTitle}" class="form-control col-4 mb-4" placeholder="Введите название магазина"/>
         <input type="text" th:field="*{storeType}" class="form-control col-4 mb-4" placeholder="Введите тип магазина"/>
@@ -45,7 +37,7 @@
                   th:field="*{storeDescription}" placeholder="Введите описание магазина">
         </textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Добавить</button>
+      <button type="submit" class="btn btn-primary">Обновить</button>
     </div>
   </form>
   <hr/>

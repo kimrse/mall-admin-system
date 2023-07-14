@@ -34,4 +34,21 @@ public class VacancyService {
         vacancy.setActive(!status);
         vacancyRepository.save(vacancy);
     }
+
+    public void editVacancy(long vacancyId, Vacancy vacancyUpdate) {
+        var vacancy = getVacancy(vacancyId);
+
+        if (vacancyUpdate.getVacancyTitle() != null) {
+            vacancy.setVacancyTitle(vacancyUpdate.getVacancyTitle());
+        }
+        if (vacancyUpdate.getSalary() != null) {
+            vacancy.setSalary(vacancyUpdate.getSalary());
+        }
+        if (vacancyUpdate.getVacancyDescription() != null) {
+            vacancy.setVacancyDescription(vacancyUpdate.getVacancyDescription());
+        }
+
+        vacancyRepository.save(vacancy);
+    }
+
 }

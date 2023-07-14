@@ -13,21 +13,24 @@
         crossorigin="anonymous" />
 </head>
 <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
-  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/contracts}">Договоры</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
 </nav>
 <body>
   <div class="container pt-4 my-5">
     <h3 class="text-center p-3">Информация о договоре:</h3>
     <span class="container p-4 m-4">
-      <a th:href="@{/tenants/(id=${contract.tenant.idTenant})}" class="btn btn-primary">Перейти к арендатору</a>
-      <a th:href="@{/stores/(id=${contract.store.idStore})}" class="btn btn-info">Перейти к магазину</a>
+      <a th:href="@{/api/v1/tenants/(id=${contract.tenant.idTenant})}" class="btn btn-primary">Перейти к арендатору</a>
+      <a th:href="@{/api/v1/stores/(id=${contract.store.idStore})}" class="btn btn-info">Перейти к магазину</a>
+      <a th:if="${contract.active == false}" th:href="@{/api/v1/contracts/update/active/{id}(id=${contract.idContract})}" class="btn btn-warning">Активировать</a>
+      <a th:if="${contract.active == true}" th:href="@{/api/v1/contracts/update/active/{id}(id=${contract.idContract})}" class="btn btn-danger">Деактивировать</a>
+      <a th:if="${contract.active == true}" th:href="@{/api/v1/contracts/update/overdue/{id}(id=${contract.idContract})}" class="btn btn-warning">Обновить статус</a>
     </span>
     <hr/>
     <div class="container d-inline-flex" th:object="${contract}">
@@ -37,12 +40,16 @@
         <h5>Номер Телефона: </h5><span th:text="*{tenant.phone}"></span>
         <h5>Дата подписания: </h5><span th:text="*{signedDate}"></span>
         <h5>Дата окончания действия договора: </h5><span th:text="*{endDate}"></span>
+        <h5>Статусы договора: </h5>
+        <span th:if="${contract.active == true}">Активен</span>
+        <span th:unless="${contract.active == true}">Прекращен</span><br>
+        <span th:if="${contract.overdue == true && contract.active == true}">Оплата по договору просрочена</span>
         <h5>Детальная информация: </h5><span th:text="*{details}"></span>
       </div>
       <div class="shadow container p-4 m-4">
         <h5>Номер павильона: </h5><span th:text="*{store.idStore}"></span>
         <h5>Название магазина: </h5>
-        <a th:href="@{/stores/(id=*{store.idStore})}" th:text="*{store.storeTitle}"></a>
+        <a th:href="@{/api/v1/stores/(id=*{store.idStore})}" th:text="*{store.storeTitle}"></a>
         <h5>Тип магазина: </h5><span th:text="*{store.storeType}"></span>
         <h5>Площадь: </h5><span th:text="*{store.squareArea}"></span>
         <h5>Этаж: </h5><span th:text="*{store.floor}"></span>
@@ -50,6 +57,63 @@
         <h5>Описание магазина: </h5><span th:text="*{store.storeDescription}"></span>
         </div>
       </div>
+      <div class="container p-2 my-2">
+        <h4 class="text-center p-3">Документы учета оплаты договора</h4>
+        <table class="table table-bordered" id="invoiceTable">
+          <thead>
+          <tr>
+            <th>Номер документа учета</th>
+            <th>Номер договора</th>
+            <th>Название магазина</th>
+            <th>ФИО Плательщика</th>
+            <th>Общая сумма</th>
+            <th>Крайний срок оплаты</th>
+            <th>Оплачено</th>
+            <th>Действия</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="invoice: ${invoices}">
+            <td th:text="${invoice.idInvoice}"></td>
+            <td th:text="${invoice.contract.idContract}"></td>
+            <td th:text="${invoice.contract.store.storeTitle}"></td>
+            <td th:text="${invoice.contract.tenant.firstName+' '+invoice.contract.tenant.lastName+' '+invoice.contract.tenant.middleName}"></td>
+            <td th:text="${invoice.totalCost}"></td>
+            <td th:text="${invoice.dueDate}"></td>
+            <td>
+              <span th:if="${invoice.paid == true}">Да</span>
+              <span th:unless="${invoice.paid == true}">Нет</span>
+            </td>
+            <td>
+              <a class="btn btn-info w-auto" th:href="@{/api/v1/invoices/(id=${invoice.idInvoice})}">Подробнее</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $("#invoiceTable").DataTable({
+              'aoColumnDefs': [{
+                  'bSortable': false,
+                  'aTargets': [-1] /* 1st one, start by the right */
+              }],
+              "oLanguage": {
+                  "sLengthMenu": "Показать _MENU_ записей",
+                  "sInfo": "Показано _END_ из _TOTAL_ записей",
+                  "sSearch": "Поиск:",
+                  "oPaginate": {
+                      "sNext": "Далее",
+                      "sPrevious": "Назад"
+                  },
+                  "sInfoEmpty": "Нет записей",
+                  "sEmptyTable": "Нет записей",
+                  "sZeroRecords": "Нет записей",}
+          });
+      })
+  </script>
   </body>
 </html>

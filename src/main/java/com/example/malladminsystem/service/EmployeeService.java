@@ -19,7 +19,7 @@ public class EmployeeService {
         return employees;
     }
 
-    public Employee getVacancy(long id) {
+    public Employee getEmployee(long id) {
         var employee = employeeRepository.findById(id);
         return employee;
     }
@@ -27,13 +27,34 @@ public class EmployeeService {
     public void addNewEmployee(Employee employee) {
         var curDate = LocalDate.now();
         var jobTitle = employee.getVacancy().getVacancyTitle();
-        var store = employee.getVacancy().getStore();
 
-        employee.setStore(store);
         employee.setHireDate(curDate);
         employee.setJobTitle(jobTitle);
         employee.setMonthlySalary(employee.getVacancy().getSalary());
         employeeRepository.save(employee);
     }
 
+    public void editEmployee(long employeeId, Employee employeeUpdate) {
+        var employee = getEmployee(employeeId);
+
+        if (employeeUpdate.getFirstName() != null) {
+            employee.setFirstName(employeeUpdate.getFirstName());
+        }
+        if (employeeUpdate.getLastName() != null) {
+            employee.setLastName(employeeUpdate.getLastName());
+        }
+        if (employeeUpdate.getMiddleName() != null) {
+            employee.setMiddleName(employeeUpdate.getMiddleName());
+        }
+        if (employeeUpdate.getPhone() != null) {
+            employee.setPhone(employeeUpdate.getPhone());
+        }
+
+        employeeRepository.save(employee);
+    }
+
+    public void deleteEmployee(long id) {
+        var employee = getEmployee(id);
+        employeeRepository.delete(employee);
+    }
 }

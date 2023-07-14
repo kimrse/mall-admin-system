@@ -25,6 +25,12 @@ public class Tenant {
 
     private String phone;
 
+    private String passNum;
+
+    private String innNum;
+
+    private String photo;
+
     private boolean isDebtor;
 
     public Long getIdTenant() {

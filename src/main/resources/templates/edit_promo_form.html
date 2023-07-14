@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Добавление акции</title>
+  <title>Редактирование акции</title>
   <link rel="stylesheet"
         type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
@@ -28,20 +28,13 @@
 </nav>
 <body>
 <div class="container pt-3 my-5">
-  <h3 class="text-center p-3">Добавить новую акцию</h3>
+  <h3 class="text-center p-3">Редактировать акцию с номером:</h3>
+  <h4 th:text="${promo.idPromo}" class="text-center p-1"></h4>
   <hr/>
-  <form th:action="@{/api/v1/promos}" th:object="${promo}" method="POST">
+  <form th:action="@{/api/v1/promos/edit/{id}(id=${promo.idPromo})}" th:object="${promo}" method="POST">
     <div class="d-flex align-items-center flex-column">
       <input type="text" th:field="*{promoType}" class="form-control col-4 mb-4" placeholder="Введите вид акции" />
       <input type="number" th:field="*{budget}" class="form-control col-4 mb-4" placeholder="Введите бюджет" />
-      <div class="form-group">
-        <label for="startDate">Выберите магазины для проведения акции:</label>
-        <select id="select" class="form-control" data-role="select-dropdown" data-profile="minimal" th:field="*{store}">
-          <option class="dropdown-item" th:each="store : ${stores}" th:value="${store.idStore}"
-                  th:text="${'Павильон: '+store.idStore+' , Магазин: '+store.storeTitle}">
-          </option>
-        </select>
-      </div>
       <div class="container d-flex flex-row justify-content-center my-4">
         <div class="mr-4 ml-4">
           <label for="startDate">Выберите дату начала акции:</label>
@@ -57,12 +50,12 @@
                   th:field="*{promoDescription}" placeholder="Введите описание акции">
         </textarea>
       </div>
-      <button type="submit" class="btn btn-primary w-auto">Добавить</button>
+      <button type="submit" class="btn btn-primary w-auto">Обновить</button>
     </div>
     <input type="hidden" th:field="*{idPromo}"/>
   </form>
   <hr/>
-  <a class="btn" th:href="@{/api/v1/promos}">Назад</a>
+  <a class="btn" th:href="@{/api/v1/promos/(id=${promo.idPromo})}">Назад</a>
 </div>
 </body>
 </html>

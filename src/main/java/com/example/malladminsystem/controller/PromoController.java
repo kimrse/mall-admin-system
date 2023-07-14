@@ -1,15 +1,18 @@
 package com.example.malladminsystem.controller;
 
+import java.io.*;
+
 import com.example.malladminsystem.model.*;
 import com.example.malladminsystem.service.*;
 import lombok.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("promos")
+@RequestMapping("/api/v1/promos")
 public class PromoController {
 
     private final PromoService promoService;
@@ -47,7 +50,47 @@ public class PromoController {
         promoService.addNewPromo(promo);
         var promoId = promo.getIdPromo();
 
-        var url = String.format("redirect:/promos/?id=%s", promoId);
+        var url = String.format("redirect:/api/v1/promos/?id=%s", promoId);
+        return url;
+    }
+
+    @GetMapping("/results/")
+    public String resultsPromoForm(@RequestParam Long id, Model model) {
+        var promo = promoService.getPromoById(id);
+
+        model.addAttribute("promo", promo);
+        return "results_promo_form";
+    }
+
+    @PostMapping("/results/{id}")
+    public String resultsPromo(@PathVariable Long id, @ModelAttribute("promo") Promo promo) {
+        promoService.saveResults(id, promo);
+
+        var url = String.format("redirect:/api/v1/promos/?id=%s", id);
+        return url;
+    }
+
+    @GetMapping("/update/active/{id}")
+    public String updateActiveStatus(@PathVariable Long id) {
+        promoService.updateActiveStatus(id);
+
+        var url = String.format("redirect:/api/v1/promos/?id=%s", id);
+        return url;
+    }
+
+    @GetMapping("/edit/")
+    public String editPromoForm(@RequestParam Long id, Model model) {
+        var promo = promoService.getPromoById(id);
+
+        model.addAttribute("promo", promo);
+        return "edit_promo_form";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editPromo(@PathVariable Long id, @ModelAttribute("promo") Promo promoUpdate) {
+        promoService.editPromo(id, promoUpdate);
+
+        var url = String.format("redirect:/api/v1/promos/?id=%s", id);
         return url;
     }
 

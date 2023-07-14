@@ -13,20 +13,20 @@
         crossorigin="anonymous" />
 </head>
 <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/tenants}">Арендаторы</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/contracts}">Договоры</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
-  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
 </nav>
   <body>
     <div class="container pt-3 my-5">
       <h3 class="text-center p-3">Перечень арендаторов</h3>
       <span class="container p-2">
-        <a class="btn btn-success w-auto .hover-shadow" th:href="@{/tenants/new}">Добавить арендатора</a>
+        <a class="btn btn-success w-auto .hover-shadow" th:href="@{/api/v1/tenants/new}">Добавить арендатора</a>
       </span>
       <hr/>
       <table class="table table-bordered" id="tenantTable">
@@ -48,11 +48,14 @@
           <td th:text="${tenant.lastName}"></td>
           <td th:text="${tenant.middleName}"></td>
           <td th:text="${tenant.email}"></td>
-          <td th:text="${tenant.phone}"></td>
           <td th:text="${tenant.address}"></td>
-          <td th:text="${tenant.isDebtor()}"></td>
+          <td th:text="${tenant.phone}"></td>
           <td>
-            <a class="btn btn-info w-auto" th:href="@{/tenants/(id=${tenant.idTenant})}">Подробнее</a>
+            <span th:if="${tenant.debtor == true}">Да</span>
+            <span th:unless="${tenant.debtor == true}">Нет</span>
+          </td>
+          <td>
+            <a class="btn btn-info w-auto" th:href="@{/api/v1/tenants/(id=${tenant.idTenant})}">Подробнее</a>
           </td>
         </tr>
         </tbody>

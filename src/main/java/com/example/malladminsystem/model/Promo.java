@@ -16,8 +16,9 @@ public class Promo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPromo;
 
-    @ManyToMany(mappedBy = "promos", fetch = FetchType.EAGER)
-    private Set<Store> stores;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_store")
+    private Store store;
 
     private String promoType;
 

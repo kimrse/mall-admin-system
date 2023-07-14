@@ -70,4 +70,25 @@ public class StorageService {
         storageRepository.save(storage);
     }
 
+    public void editStorage(long id, Storage storageUpdate) {
+        var storage = getStorage(id);
+
+        if (storageUpdate.getProductName() != null) {
+            storage.setProductName(storageUpdate.getProductName());
+        }
+        if (storageUpdate.getSupplier() != null) {
+            storage.setSupplier(storageUpdate.getSupplier());
+        }
+        if (storageUpdate.getManufacturerCountry() != null) {
+            storage.setManufacturerCountry(storageUpdate.getManufacturerCountry());
+        }
+        if (storageUpdate.getAmount() != null) {
+            storage.setAmount(storageUpdate.getAmount());
+        }
+        if (storageUpdate.getCostPerDay() != null) {
+            storage.setCostPerDay(storageUpdate.getCostPerDay());
+        }
+
+        storageRepository.save(storage);
+    }
 }

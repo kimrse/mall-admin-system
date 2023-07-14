@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/employees")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -24,7 +24,7 @@ public class EmployeeController {
 
     @GetMapping("/")
     public String getEmployee(@RequestParam Long id, Model model) {
-        var employee = employeeService.getVacancy(id);
+        var employee = employeeService.getEmployee(id);
         model.addAttribute("employee", employee);
         return "employee";
     }
@@ -42,6 +42,31 @@ public class EmployeeController {
     @PostMapping
     public String addEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.addNewEmployee(employee);
-        return "redirect:/employees";
+        return "redirect:/api/v1/employees";
     }
+
+    @GetMapping("/edit/")
+    public String editEmployeeForm(@RequestParam Long id, Model model) {
+        var employee = employeeService.getEmployee(id);
+
+        model.addAttribute("employee", employee);
+        return "edit_employee_form";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editEmployee(@PathVariable Long id, @ModelAttribute("employee") Employee employeeUpdate) {
+        employeeService.editEmployee(id, employeeUpdate);
+
+        var url = String.format("redirect:/api/v1/employees/?id=%s", id);
+        return url;
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable Long id) {
+        employeeService.deleteEmployee(id);
+
+        var url = "redirect:/api/v1/employees";
+        return url;
+    }
+
 }

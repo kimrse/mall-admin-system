@@ -12,20 +12,20 @@
           crossorigin="anonymous" />
   </head>
   <nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
-    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/tenants}">Арендаторы</a>
-    <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/contracts}">Договоры</a>
-    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/invoices}">Учет</a>
-    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/stores}">Павильоны</a>
-    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/employees}">Сотрудники</a>
-    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/vacancies}">Вакансии</a>
-    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/storage}">Поставки</a>
-    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/promos}">Акции</a>
+    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/tenants}">Арендаторы</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/contracts}">Договоры</a>
+    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+    <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
   </nav>
   <body>
   <div class="container pt-3 my-5">
     <h3 class="text-center p-3">Добавить новый договор аренды</h3>
     <hr/>
-    <form th:action="@{/contracts}" th:object="${contract}" method="POST">
+    <form th:action="@{/api/v1/contracts}" th:object="${contract}" method="POST">
       <div class="d-flex flex-column">
         <div class="form-group">
           <select class="form-control" th:field="*{tenant}">
@@ -39,7 +39,8 @@
           <select class="form-control" data-role="select-dropdown" data-profile="minimal" th:field="*{store}">
             <option class="dropdown-item" value="0">Выберите магазин</option>
             <option th:each="store : ${emptyStores}" th:value="${store.idStore}"
-                    th:text="${'Магазин: '+store.idStore+', Этаж: '+store.floor+', Площадь: '+store.squareArea+', Цена: '+store.monthlyCost}">
+                    th:text="${'Магазин: '+store.idStore+', Этаж: '+store.floor+
+                    ', Площадь: '+store.squareArea+', Цена: '+store.monthlyCost+', Сдан: '+store.occupied}">
             </option>
           </select>
         </div>
@@ -54,7 +55,7 @@
       </div>
     </form>
     <hr/>
-    <a th:href="@{/list}">Back to list</a>
+    <a class="btn" th:href="@{/api/v1/contracts}">Назад</a>
     </div>
   </body>
 </html>

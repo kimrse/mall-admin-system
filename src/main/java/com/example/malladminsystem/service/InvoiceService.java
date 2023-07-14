@@ -24,6 +24,11 @@ public class InvoiceService {
         return invoices;
     }
 
+    public List<Invoice> getAllInvoicesByContractId(long id) {
+        var invoices = invoiceRepository.findAllByContractIdContract(id);
+        return invoices;
+    }
+
     public Invoice getInvoice(long id) {
         var invoice = invoiceRepository.findByIdInvoice(id);
         return invoice;
@@ -34,6 +39,14 @@ public class InvoiceService {
         var status = invoice.isPaid();
 
         invoice.setPaid(!status);
+        invoiceRepository.save(invoice);
+    }
+
+    public void updateTotalCost(Invoice invoice, Double storageCost) {
+        var rent = countTotalRentCost(invoice);
+        var totalCost = Double.sum(rent, storageCost);
+
+        invoice.setTotalCost(totalCost);
         invoiceRepository.save(invoice);
     }
 

@@ -14,4 +14,6 @@ public interface InvoiceRepository extends CrudRepository<Invoice, Long> {
     List<Invoice> findAll();
 
     List<Invoice> findAllByIsPaidIsFalse();
+
+    List<Invoice> findAllByContractIdContract(long id);
 }

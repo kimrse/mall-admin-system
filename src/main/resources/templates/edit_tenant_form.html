@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование арендотора</title>
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+<nav class="container pt-4 nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/api/v1/tenants}">Арендаторы</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/contracts}">Договоры</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/invoices}">Учет</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/stores}">Павильоны</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/employees}">Сотрудники</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/vacancies}">Вакансии</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/storage}">Поставки</a>
+  <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
+</nav>
+<body>
+<div class="container pt-3 my-5">
+  <h3 class="text-center p-3">Редактировать арендатора с номером:</h3>
+  <h4 th:text="${tenant.idTenant}" class="text-center p-1"></h4>
+  <hr/>
+  <form th:action="@{/api/v1/tenants/edit/{id}(id=${tenant.idTenant})}" th:object="${tenant}" method="POST">
+    <div class="d-flex align-items-center flex-column">
+      <input type="text" th:field="*{firstName}" class="form-control col-4 mb-4 f" placeholder="Введите имя" />
+      <input type="text" th:field="*{lastName}" class="form-control col-4 mb-4" placeholder="Введите фамилию" />
+      <input type="text" th:field="*{middleName}" class="form-control col-4 mb-4" placeholder="Введите отчество" />
+      <input type="text" th:field="*{passNum}" class="form-control col-4 mb-4" placeholder="Введите серию и номер паспорта" />
+      <input type="text" th:field="*{innNum}" class="form-control col-4 mb-4" placeholder="Введите ИНН" />
+      <input type="text" th:field="*{email}" class="form-control col-4 mb-4" placeholder="Введите почту" />
+      <input type="text" th:field="*{address}" class="form-control col-4 mb-4" placeholder="Введите адрес" />
+      <input type="text" th:field="*{phone}" class="form-control col-4 mb-4" placeholder="Введите номер телефона" />
+      <button type="submit" class="btn btn-primary w-auto">Обновить</button>
+      <input type="hidden" th:field="*{idTenant}" />
+    </div>
+  </form>
+  <hr/>
+  <a class="btn" th:href="@{/api/v1/tenants/(id=${tenant.idTenant})}">Назад</a>
+</div>
+</body>
+</html>

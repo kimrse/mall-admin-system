@@ -1,15 +1,18 @@
 package com.example.malladminsystem.controller;
 
+import java.io.*;
+
 import com.example.malladminsystem.model.*;
 import com.example.malladminsystem.service.*;
 import lombok.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/tenants")
+@RequestMapping("/api/v1/tenants")
 public class TenantController {
 
     private final TenantService tenantService;
@@ -43,6 +46,48 @@ public class TenantController {
     @PostMapping
     public String addTenant(@ModelAttribute("tenant") Tenant tenant) {
         tenantService.addNewTenant(tenant);
-        return "redirect:/tenants";
+        return "redirect:/api/v1/tenants";
     }
+
+    @GetMapping("/update/status/{id}")
+    public String updateStatus(@PathVariable Long id) {
+        tenantService.updateStatus(id);
+
+        var url = String.format("redirect:/api/v1/tenants/?id=%s", id);
+        return url;
+    }
+
+    @GetMapping("/edit/")
+    public String editTenantForm(@RequestParam Long id, Model model) {
+        var tenant = tenantService.getTenantById(id);
+
+        model.addAttribute("tenant", tenant);
+        return "edit_tenant_form";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editTenant(@PathVariable Long id, @ModelAttribute("tenant") Tenant tenantUpdate) {
+        tenantService.editTenant(id, tenantUpdate);
+
+        var url = String.format("redirect:/api/v1/tenants/?id=%s", id);
+        return url;
+    }
+
+//    @GetMapping("/upload/")
+//    public String imageUploadForm(@RequestParam Long id, Model model) {
+//        var tenant = tenantService.getTenantById(id);
+//        model.addAttribute("tenant", tenant);
+//        return "upload_tenant_photo";
+//    }
+
+//    @PostMapping("/upload")
+//    public String uploadImage(
+//        @ModelAttribute("tenant") Tenant tenant, @RequestParam("image") MultipartFile file
+//    ) throws IOException {
+//        tenantService.saveImage(tenant, file);
+//
+//        var url = String.format("redirect:/tenant/?id=%s", tenant.getIdTenant());
+//        return url;
+//    }
+
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Вакансии</title>
+  <title>Редактирование вакансии</title>
   <link rel="stylesheet"
         type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
@@ -22,25 +22,24 @@
   <a class="flex-sm-fill text-sm-center nav-link btn-light" th:href="@{/api/v1/promos}">Акции</a>
 </nav>
 <body>
-<div class="container pt-4 my-5">
-  <h3 class="text-center p-3">Информация о вакансии:</h3>
-  <span class="container p-4 m-4">
-    <a th:href="@{/api/v1/stores/(id=${vacancy.store.idStore})}" class="btn btn-primary">Перейти к магазину</a>
-    <a th:href="@{/api/v1/vacancies/edit/(id=${vacancy.idVacancy})}" class="btn btn-success">Редактировать вакансию</a>
-    <a th:href="@{/api/v1/vacancies/update(id=${vacancy.idVacancy})}" class="btn btn-warning">Обновить статус</a>
-  </span>
+<div class="container pt-3 my-5">
+  <h3 class="text-center p-3">Редактировать вакансию с номером</h3>
+  <h4 th:text="${vacancy.idVacancy}" class="text-center p-1"></h4>
   <hr/>
-  <div th:object="${vacancy}" class="container">
-    <div class="shadow container p-4 m-4">
-      <h5 class="py-2">Наименование: </h5><span th:text="*{vacancyTitle}"></span>
-      <h5 class="py-2">Магазин: </h5><span th:text="*{store.storeTitle}"></span>
-      <h5 class="py-2">Зарплата: </h5><span th:text="*{salary}"></span>
-      <h5 class="py-2">Статус вакансии: </h5>
-      <span th:if="*{active == true}">Активна</span>
-      <span th:unless="*{active == true}">Не активна</span>
-      <h5 class="py-2">Описание вакансии: </h5><span th:text="*{vacancyDescription}"></span>
+  <form th:action="@{/api/v1/vacancies/edit/{id}(id=${vacancy.idVacancy})}" th:object="${vacancy}" method="POST">
+    <div class="d-flex flex-column">
+      <input type="text" th:field="*{vacancyTitle}" class="form-control col-4 mb-4" placeholder="Введите наименование вакансии" />
+      <input type="text" th:field="*{salary}" class="form-control col-4 mb-4" placeholder="Введите уровень заработой платы" />
+      <div class="form-outline mb-4">
+        <textarea class="form-control" id="textAreaExample" rows="10"
+                  th:field="*{vacancyDescription}" placeholder="Введите описание вакансии">
+        </textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Обновить</button>
     </div>
-  </div>
+  </form>
+  <hr/>
+  <a class="btn" th:href="@{/api/v1/vacancies/(id=${vacancy.idVacancy})}">Назад</a>
 </div>
 </body>
 </html>
